@@ -1,0 +1,8 @@
+rootProject.name = 'kdg-backend'
+
+include 'application'
+include 'common'
+include 'boundedContextLandside'
+include 'boundedContextWaterside'
+include 'boundedContextWarehouse'
+include 'boundedContextInvoicing'
