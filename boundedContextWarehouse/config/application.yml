@@ -1,9 +1,24 @@
 server:
   port: ${PORT:8092}
   servlet:
-    context-path: /bcb
+    context-path: /warehouse
 
 
 spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+  datasource:
+    url: "jdbc:postgres://localhost:5440/kdg_db"
+    username: kdg_admin
+    password: kdg_admin_password
+#    driver-class-name:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: myuser
+    password: mypassword
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}

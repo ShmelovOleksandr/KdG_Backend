@@ -1,18 +1,17 @@
   services:
-    mysql_app_db:
-      image: mysql:9.0.1
-      restart: no
+    postgres_app_db:
+      image: 'postgres:16.1-alpine'
+      restart: always
       environment:
-        MYSQL_DATABASE: 'app_db'
-        MYSQL_USER: 'user'
-        MYSQL_PASSWORD: 'password'
-        MYSQL_ROOT_PASSWORD: 'password'
+        - 'POSTGRES_DB=kdg_db'
+        - 'POSTGRES_USER=kdg_admin'
+        - 'POSTGRES_PASSWORD=kdg_admin_password'
       ports:
-        - '3306:3306'
+        - '5440:5432'
       networks:
         - backend
       volumes:
-        - ./mysql/data:/var/lib/mysql
+        - ./postgres/data:/var/lib/postgres
 
     app_rabbitmq:
       image: rabbitmq:3.13.7-management-alpine
