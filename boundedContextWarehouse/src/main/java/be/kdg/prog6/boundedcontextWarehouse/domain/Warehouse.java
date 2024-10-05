@@ -1,5 +1,8 @@
 package be.kdg.prog6.boundedcontextWarehouse.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 public class Warehouse {
@@ -18,6 +21,8 @@ public class Warehouse {
         this.ownerId = ownerId;
         this.maxCapacity = maxCapacity;
         this.materialTypeStored = materialTypeStored;
+        //TODO Is is the best solution?
+        this.warehouseActivityWindow = new WarehouseActivityWindow(this.id);
     }
 
 
@@ -49,11 +54,11 @@ public class Warehouse {
         return materialTypeStored;
     }
 
-    public WarehouseActivityWindow getActivityWindow() {
+    public WarehouseActivityWindow getWarehouseActivityWindow() {
         return warehouseActivityWindow;
     }
 
-    public void setActivityWindow(WarehouseActivityWindow warehouseActivityWindow) {
+    public void setWarehouseActivityWindow(WarehouseActivityWindow warehouseActivityWindow) {
         this.warehouseActivityWindow = warehouseActivityWindow;
     }
 }

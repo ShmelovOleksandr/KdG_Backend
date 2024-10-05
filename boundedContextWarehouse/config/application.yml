@@ -5,16 +5,19 @@ server:
 
 
 spring:
+  sql:
+    init:
+      data-locations: classpath:data.sql
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: create-drop
       show-sql: true
   datasource:
-    url: "jdbc:postgres://localhost:5440/kdg_db"
+    url: "jdbc:postgresql://localhost:5440/kdg_db"
     username: kdg_admin
     password: kdg_admin_password
-#    driver-class-name:
+    driver-class-name: org.postgresql.Driver
   rabbitmq:
     host: localhost
     port: 5672

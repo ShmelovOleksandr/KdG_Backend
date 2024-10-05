@@ -12,4 +12,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.projectlombok:lombok'
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+    implementation 'org.modelmapper:modelmapper:3.2.1'
+    runtimeOnly 'org.postgresql:postgresql'
 }

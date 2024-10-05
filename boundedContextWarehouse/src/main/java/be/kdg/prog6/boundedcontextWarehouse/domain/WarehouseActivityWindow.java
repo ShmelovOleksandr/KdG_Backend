@@ -1,7 +1,11 @@
 package be.kdg.prog6.boundedcontextWarehouse.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,9 +13,9 @@ public class WarehouseActivityWindow {
     private WarehouseId warehouseId;
     private List<WarehouseActivity> activities;
 
-    public WarehouseActivityWindow(WarehouseId warehouseId, List<WarehouseActivity> activities) {
+    public WarehouseActivityWindow(WarehouseId warehouseId) {
         this.warehouseId = warehouseId;
-        this.activities = activities;
+        this.activities = new ArrayList<>();
     }
 
     public BigDecimal getCurrentTons() {
@@ -33,5 +37,21 @@ public class WarehouseActivityWindow {
         );
         activities.add(warehouseActivity);
         return warehouseActivity;
+    }
+
+    public WarehouseId getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(WarehouseId warehouseId) {
+        this.warehouseId = warehouseId;
+    }
+
+    public List<WarehouseActivity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<WarehouseActivity> activities) {
+        this.activities = activities;
     }
 }
