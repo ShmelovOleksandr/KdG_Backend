@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextWarehouse.adapter.out.rabbitmq;
+package be.kdg.prog6.boundedcontextLandside.adapter.in.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

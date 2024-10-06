@@ -25,3 +25,4 @@ spring:
     password: mypassword
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
+    import: optional:configserver:http://localhost:8888
