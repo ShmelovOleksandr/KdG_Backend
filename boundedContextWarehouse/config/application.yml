@@ -5,14 +5,16 @@ server:
 
 
 spring:
-  sql:
-    init:
-      data-locations: classpath:data.sql
   jpa:
     open-in-view: false
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
       show-sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
   datasource:
     url: "jdbc:postgresql://localhost:5440/kdg_warehouse_db"
     username: kdg_admin
