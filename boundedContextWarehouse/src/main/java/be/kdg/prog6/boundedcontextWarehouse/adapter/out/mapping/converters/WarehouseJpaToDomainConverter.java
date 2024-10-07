@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextWarehouse.adapter.out.converter;
+package be.kdg.prog6.boundedcontextWarehouse.adapter.out.mapping.converters;
 
 import be.kdg.prog6.boundedcontextWarehouse.adapter.out.WarehouseJpaEntity;
 import be.kdg.prog6.boundedcontextWarehouse.domain.SellerId;

@@ -7,18 +7,18 @@ import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialCommand;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialUseCase;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.messaging.NotifyWarehouseUpdatePort;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehouseBySellerAndMaterialCommand;
-import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehouseForSellerAndMaterialPort;
+import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehousePort;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.UpdateWarehousePort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ReceiveMaterialUseCaseImpl implements ReceiveMaterialUseCase {
-    private final FindWarehouseForSellerAndMaterialPort findWarehouseForSellerAndMaterialPort;
+    private final FindWarehousePort findWarehouseForSellerAndMaterialPort;
     private final UpdateWarehousePort updateWarehousePort;
     private final NotifyWarehouseUpdatePort notifyWarehouseUpdatePort;
 
 
-    public ReceiveMaterialUseCaseImpl(FindWarehouseForSellerAndMaterialPort findWarehouseForSellerAndMaterialPort,
+    public ReceiveMaterialUseCaseImpl(FindWarehousePort findWarehouseForSellerAndMaterialPort,
                                       UpdateWarehousePort updateWarehousePort,
                                       NotifyWarehouseUpdatePort notifyWarehouseUpdatePort) {
         this.findWarehouseForSellerAndMaterialPort = findWarehouseForSellerAndMaterialPort;

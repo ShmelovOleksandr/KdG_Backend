@@ -14,7 +14,7 @@ spring:
       ddl-auto: create-drop
       show-sql: true
   datasource:
-    url: "jdbc:postgresql://localhost:5440/kdg_db"
+    url: "jdbc:postgresql://localhost:5440/kdg_warehouse_db"
     username: kdg_admin
     password: kdg_admin_password
     driver-class-name: org.postgresql.Driver

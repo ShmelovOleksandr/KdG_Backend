@@ -2,9 +2,8 @@ package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
 
 import be.kdg.prog6.boundedcontextWarehouse.domain.MaterialType;
 import be.kdg.prog6.boundedcontextWarehouse.domain.Warehouse;
-import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivityWindow;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehouseBySellerAndMaterialCommand;
-import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehouseForSellerAndMaterialPort;
+import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehousePort;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.UpdateWarehousePort;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class WarehouseDatabaseAdapter implements FindWarehouseForSellerAndMaterialPort, UpdateWarehousePort {
+public class WarehouseDatabaseAdapter implements FindWarehousePort, UpdateWarehousePort {
     private final ModelMapper mapper;
     private final WarehouseJpaRepository warehouseJpaRepository;
 
