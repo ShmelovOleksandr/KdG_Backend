@@ -28,7 +28,7 @@ public class WarehouseUpdateEventPublisher implements NotifyWarehouseUpdatePort 
 
     @Override
     public void notifyWarehouseUpdated(Warehouse warehouse, WarehouseActivity warehouseActivity) {
-        final String ROUTING_KEY = "warehouse." + warehouse.getId() + ".activity.updated";
+        final String ROUTING_KEY = "warehouse." + warehouse.getId().id() + ".material.updated";
         LOGGER.info("Notifying RabbitMQ: {}", ROUTING_KEY);
         rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, new WarehouseUpdatedEvent(
                 new WarehouseEventId(UUID.randomUUID()),

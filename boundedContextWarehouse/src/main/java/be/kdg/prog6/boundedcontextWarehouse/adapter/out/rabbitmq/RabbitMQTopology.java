@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQTopology {
     public static final String WAREHOUSE_EVENTS_EXCHANGE = "warehouse_events";
-    public static final String MATERIAL_INCREASED_QUEUE = "material_increased";
+    public static final String MATERIAL_UPDATED_QUEUE = "material_updated";
 
     @Bean
     TopicExchange warehouseEventsExchange() {
@@ -22,7 +22,7 @@ public class RabbitMQTopology {
 
     @Bean
     Queue materialReceivedQueue() {
-        return new Queue(MATERIAL_INCREASED_QUEUE, true);
+        return new Queue(MATERIAL_UPDATED_QUEUE, true);
     }
 
     @Bean
@@ -30,7 +30,7 @@ public class RabbitMQTopology {
         return BindingBuilder
                 .bind(queue)
                 .to(exchange)
-                .with("warehouse.#.material.increased");
+                .with("warehouse.#.material.updated");
     }
 
     @Bean

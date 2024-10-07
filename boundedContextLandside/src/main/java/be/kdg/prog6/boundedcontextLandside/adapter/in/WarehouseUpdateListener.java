@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 public class WarehouseUpdateListener {
     private static final Logger log = LoggerFactory.getLogger(WarehouseUpdateListener.class);
 
-    public static final String MATERIAL_INCREASED_QUEUE = "material_increased";
+    public static final String MATERIAL_UPDATED_QUEUE = "material_updated";
 
-    @RabbitListener(queues = MATERIAL_INCREASED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
+    @RabbitListener(queues = MATERIAL_UPDATED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
     public void piggyBankUpdated(final WarehouseUpdatedEvent event) {
         log.info(
                 "Warehouse with id {} now contains {} tons of {}",
