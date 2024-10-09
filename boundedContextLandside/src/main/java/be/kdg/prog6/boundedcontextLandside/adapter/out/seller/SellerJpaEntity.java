@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.out;
+package be.kdg.prog6.boundedcontextLandside.adapter.out.seller;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

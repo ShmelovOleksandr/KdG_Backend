@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.in;
+package be.kdg.prog6.boundedcontextLandside.adapter.in.warehouse;
 
 import be.kdg.prog6.boundedcontextLandside.port.in.WarehouseMaterialsProjector;
 import org.slf4j.Logger;

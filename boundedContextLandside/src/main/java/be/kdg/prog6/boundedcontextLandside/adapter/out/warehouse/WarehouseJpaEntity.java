@@ -1,5 +1,6 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.out;
+package be.kdg.prog6.boundedcontextLandside.adapter.out.warehouse;
 
+import be.kdg.prog6.boundedcontextLandside.adapter.out.seller.SellerJpaEntity;
 import be.kdg.prog6.boundedcontextLandside.domain.MaterialType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;

@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.in;
+package be.kdg.prog6.boundedcontextLandside.adapter.in.warehouse;
 
 import java.util.UUID;
 

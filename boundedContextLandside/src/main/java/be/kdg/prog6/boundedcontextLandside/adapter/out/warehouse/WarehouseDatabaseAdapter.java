@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.out;
+package be.kdg.prog6.boundedcontextLandside.adapter.out.warehouse;
 
 import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
@@ -8,8 +8,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpdatePort  {
