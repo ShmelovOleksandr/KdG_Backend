@@ -26,6 +26,12 @@ public class HourSlotJpaEntity {
         this.appointmentManager = appointmentManager;
     }
 
+    public HourSlotJpaEntity(int hour, AppointmentManagerJpaEntity appointmentManager, List<AppointmentJpaEntity> appointments) {
+        this.hour = hour;
+        this.appointmentManager = appointmentManager;
+        this.appointments = appointments;
+    }
+
     public int getHour() {
         return hour;
     }

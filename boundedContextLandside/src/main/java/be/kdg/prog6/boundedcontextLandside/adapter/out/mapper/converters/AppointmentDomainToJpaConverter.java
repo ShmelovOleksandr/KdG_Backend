@@ -16,7 +16,7 @@ public class AppointmentDomainToJpaConverter implements Converter<Appointment, A
         Appointment appointment = mappingContext.getSource();
 
         AppointmentManagerJpaEntity appointmentManagerJpa = new AppointmentManagerJpaEntity(LocalDate.now());
-        HourSlotJpaEntity hourSlot = new HourSlotJpaEntity(appointment.prefferredHour().hourNumber(), appointmentManagerJpa);
+        HourSlotJpaEntity hourSlot = new HourSlotJpaEntity(appointment.preferredHour().hourNumber(), appointmentManagerJpa);
         SellerJpaEntity seller = new SellerJpaEntity(appointment.sellerId().id());
 
         return new AppointmentJpaEntity(

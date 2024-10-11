@@ -7,6 +7,8 @@ public class HourSlotJpaEntityId implements Serializable {
     private int hour;
     private AppointmentManagerJpaEntity appointmentManager;
 
+    public HourSlotJpaEntityId() {
+    }
 
     public HourSlotJpaEntityId(int hour, AppointmentManagerJpaEntity appointmentManager) {
         this.hour = hour;

@@ -26,19 +26,16 @@ public class ScheduleAppointmentUseCaseImpl implements ScheduleAppointmentUseCas
     @Transactional
     public Appointment scheduleAppointment(ScheduleAppointmentCommand scheduleAppointmentCommand) {
         // create an appointment
-        Appointment appointment = new Appointment(
-                new AppointmentId(UUID.randomUUID()),
-                scheduleAppointmentCommand.sellerId(),
-                scheduleAppointmentCommand.truckLicensePlate(),
-                scheduleAppointmentCommand.materialType(),
-                scheduleAppointmentCommand.prefferedHour()
-        );
+
+
+        AppointmentManager currentAppointmentManager = findAppointmentManagerPort.findAppointmentManagerForCurrentDay();
 
         //checks (in the domain class) (2 rules)
+        Appointment savedAppointment = currentAppointmentManager.tryScheduleAppointment(scheduleAppointmentCommand.sellerId(), scheduleAppointmentCommand.truckLicensePlate(), scheduleAppointmentCommand.materialType(), scheduleAppointmentCommand.prefferedHour());
 
         // save an appointment
-        appointmentPersistencePort.saveAppointment(appointment);
+        appointmentPersistencePort.saveAppointment(savedAppointment);
 
-        return appointment;
+        return savedAppointment;
     }
 }

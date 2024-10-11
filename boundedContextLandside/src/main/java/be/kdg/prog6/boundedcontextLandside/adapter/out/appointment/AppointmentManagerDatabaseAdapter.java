@@ -1,6 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
 import be.kdg.prog6.boundedcontextLandside.domain.AppointmentManager;
+import be.kdg.prog6.boundedcontextLandside.domain.HourSlot;
 import be.kdg.prog6.boundedcontextLandside.port.out.FindAppointmentManagerPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,13 @@ import java.time.LocalDate;
 public class AppointmentManagerDatabaseAdapter implements FindAppointmentManagerPort {
     private final ModelMapper mapper;
     private final AppointmentManagerJpaRepository appointmentManagerJpaRepository;
+    private final HourSlotJpaRepository hourSlotJpaRepository;
 
     @Autowired
-    public AppointmentManagerDatabaseAdapter(ModelMapper mapper, AppointmentManagerJpaRepository appointmentManagerJpaRepository) {
+    public AppointmentManagerDatabaseAdapter(ModelMapper mapper, AppointmentManagerJpaRepository appointmentManagerJpaRepository, HourSlotJpaRepository hourSlotJpaRepository) {
         this.mapper = mapper;
         this.appointmentManagerJpaRepository = appointmentManagerJpaRepository;
+        this.hourSlotJpaRepository = hourSlotJpaRepository;
     }
 
     @Override
@@ -28,6 +31,7 @@ public class AppointmentManagerDatabaseAdapter implements FindAppointmentManager
     private AppointmentManagerJpaEntity createNewAppointmentManager() {
         AppointmentManager appointmentManager = new AppointmentManager();
         AppointmentManagerJpaEntity appointmentManagerJpaEntity = mapper.map(appointmentManager, AppointmentManagerJpaEntity.class);
+        hourSlotJpaRepository.saveAll(appointmentManagerJpaEntity.getHourSlots());
         return appointmentManagerJpaRepository.save(appointmentManagerJpaEntity);
     }
 }

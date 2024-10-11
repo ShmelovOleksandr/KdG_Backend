@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/appointments")
 public class AppointmentRestController {
-    private final ModelMapper mapper;
     private final ScheduleAppointmentUseCase scheduleAppointmentUseCase;
 
-    public AppointmentRestController(ModelMapper mapper, ScheduleAppointmentUseCase scheduleAppointmentUseCase) {
-        this.mapper = mapper;
+    public AppointmentRestController(ScheduleAppointmentUseCase scheduleAppointmentUseCase) {
         this.scheduleAppointmentUseCase = scheduleAppointmentUseCase;
     }
 
@@ -29,9 +27,9 @@ public class AppointmentRestController {
                 appointment.sellerId(),
                 appointment.licensePlate(),
                 appointment.materialType(),
-                appointment.prefferredHour()
+                appointment.preferredHour()
         ));
-        AppointmentGetDto appointmentGetDto = mapper.map(savedAppointment, AppointmentGetDto.class);
+        AppointmentGetDto appointmentGetDto = AppointmentGetDto.of(savedAppointment);
         return ResponseEntity.status(HttpStatus.CREATED).body(appointmentGetDto);
     }
 
