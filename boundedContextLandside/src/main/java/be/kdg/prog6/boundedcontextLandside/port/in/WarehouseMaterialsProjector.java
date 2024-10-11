@@ -5,5 +5,7 @@ import be.kdg.prog6.boundedcontextLandside.domain.WarehouseActivityType;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 
 public interface WarehouseMaterialsProjector {
+
+    //TODO Rename
     void projectMaterials(WarehouseId warehouseId, WarehouseActivityType activityType, Material material);
 }

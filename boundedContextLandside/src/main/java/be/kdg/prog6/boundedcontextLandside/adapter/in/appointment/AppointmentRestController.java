@@ -29,7 +29,7 @@ public class AppointmentRestController {
                 appointment.sellerId(),
                 appointment.licensePlate(),
                 appointment.materialType(),
-                appointment.scheduleTime()
+                appointment.prefferredHour()
         ));
         AppointmentGetDto appointmentGetDto = mapper.map(savedAppointment, AppointmentGetDto.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(appointmentGetDto);

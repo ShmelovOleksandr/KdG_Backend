@@ -9,6 +9,7 @@ import be.kdg.prog6.boundedcontextWarehouse.port.out.messaging.NotifyWarehouseUp
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehouseBySellerAndMaterialCommand;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehousePort;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.UpdateWarehousePort;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +28,7 @@ public class ReceiveMaterialUseCaseImpl implements ReceiveMaterialUseCase {
     }
 
     @Override
+    @Transactional
     public void receiveMaterial(ReceiveMaterialCommand receiveMaterialCommand) {
         //find warehouse
         Material material = receiveMaterialCommand.material();

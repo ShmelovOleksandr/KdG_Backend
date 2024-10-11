@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +17,9 @@ public class AppointmentJpaEntity {
     private UUID id;
     private String truckLicensePlate;
     private MaterialType expectedMaterialType;
-    private LocalDateTime appointmentDate;
+
+    @ManyToOne
+    private HourSlotJpaEntity hourSlot;
 
     @ManyToOne
     @JoinColumn(name = "seller_id")
@@ -27,11 +28,11 @@ public class AppointmentJpaEntity {
     public AppointmentJpaEntity() {
     }
 
-    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, LocalDateTime appointmentDate, SellerJpaEntity seller) {
+    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
         this.id = id;
         this.truckLicensePlate = truckLicensePlate;
         this.expectedMaterialType = expectedMaterialType;
-        this.appointmentDate = appointmentDate;
+        this.hourSlot = hourSlot;
         this.seller = seller;
     }
 
@@ -59,12 +60,12 @@ public class AppointmentJpaEntity {
         this.expectedMaterialType = expectedMaterialType;
     }
 
-    public LocalDateTime getAppointmentDate() {
-        return appointmentDate;
+    public HourSlotJpaEntity getHourSlot() {
+        return hourSlot;
     }
 
-    public void setAppointmentDate(LocalDateTime appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setHourSlot(HourSlotJpaEntity hourSlot) {
+        this.hourSlot = hourSlot;
     }
 
     public SellerJpaEntity getSeller() {
