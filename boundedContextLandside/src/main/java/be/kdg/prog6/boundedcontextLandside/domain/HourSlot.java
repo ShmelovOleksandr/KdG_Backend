@@ -1,5 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.domain;
 
+import be.kdg.prog6.boundedcontextLandside.domain.exception.NoFreeAppointmentsSlots;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,15 +9,13 @@ public class HourSlot {
     //TODO Move to the .properties file
     private final static int MAX_APPOINTMENTS_PER_HOUR = 40;
     private int hour;
-    private List<Appointment> appointments;
+    private List<Appointment> appointments = new ArrayList<>();
 
     public HourSlot() {
-        this.appointments = new ArrayList<>();
     }
 
     public HourSlot(int hour) {
         this.hour = hour;
-        this.appointments = new ArrayList<>();
     }
 
     public HourSlot(int hour, List<Appointment> appointments) {
@@ -29,7 +29,10 @@ public class HourSlot {
     }
 
     public Appointment scheduleAnAppointment(Appointment appointment) {
-        appointments.add(appointment);
+        if (!hasAvailableSlots())
+            throw new NoFreeAppointmentsSlots("There are no free appointment slots for %s:00".formatted(appointment.preferredHour()));
+
+        this.appointments.add(appointment);
         return appointment;
     }
 

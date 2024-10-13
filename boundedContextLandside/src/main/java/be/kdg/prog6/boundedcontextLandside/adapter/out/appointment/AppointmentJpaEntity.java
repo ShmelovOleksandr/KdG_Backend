@@ -17,6 +17,8 @@ public class AppointmentJpaEntity {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
     private String truckLicensePlate;
+
+    @Enumerated(EnumType.STRING)
     private MaterialType expectedMaterialType;
 
     @ManyToOne

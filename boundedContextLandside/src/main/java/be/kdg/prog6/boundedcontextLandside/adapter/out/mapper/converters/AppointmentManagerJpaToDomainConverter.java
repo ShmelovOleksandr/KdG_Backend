@@ -8,6 +8,7 @@ import be.kdg.prog6.boundedcontextLandside.domain.*;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentManagerJpaToDomainConverter implements Converter<AppointmentManagerJpaEntity, AppointmentManager> {
@@ -21,7 +22,7 @@ public class AppointmentManagerJpaToDomainConverter implements Converter<Appoint
                 appointmentManagerJpaEntity.getHourSlots().stream().map(
                         hourSlotJpaEntity -> new HourSlot(
                                 hourSlotJpaEntity.getHour(),
-                                hourSlotJpaEntity.getAppointments().stream().map(
+                                new ArrayList<>(hourSlotJpaEntity.getAppointments().stream().map(
                                         appointmentJpaEntity -> new Appointment(
                                                 new AppointmentId(appointmentJpaEntity.getId()),
                                                 new SellerId(appointmentJpaEntity.getSeller().getId()),
@@ -29,7 +30,7 @@ public class AppointmentManagerJpaToDomainConverter implements Converter<Appoint
                                                 appointmentJpaEntity.getExpectedMaterialType(),
                                                 new Hour(appointmentJpaEntity.getHourSlot().getHour())
                                         )
-                                ).toList()
+                                ).toList())
                         )
                 ).toList()
         );

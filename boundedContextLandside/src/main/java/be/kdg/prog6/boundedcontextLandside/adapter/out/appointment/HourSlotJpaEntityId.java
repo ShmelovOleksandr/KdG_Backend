@@ -43,4 +43,12 @@ public class HourSlotJpaEntityId implements Serializable {
     public int hashCode() {
         return Objects.hash(hour, appointmentManager);
     }
+
+    @Override
+    public String toString() {
+        return "HourSlotJpaEntityId{" +
+                "hour=" + hour +
+                ", appointmentManager=" + appointmentManager +
+                '}';
+    }
 }

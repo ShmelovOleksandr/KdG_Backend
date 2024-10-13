@@ -1,6 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +14,7 @@ public class AppointmentManagerJpaEntity {
     private LocalDate managedDate;
 
     @OneToMany(mappedBy = "appointmentManager")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<HourSlotJpaEntity> hourSlots;
 
     public AppointmentManagerJpaEntity() {

@@ -31,7 +31,8 @@ public class AppointmentManagerDatabaseAdapter implements FindAppointmentManager
     private AppointmentManagerJpaEntity createNewAppointmentManager() {
         AppointmentManager appointmentManager = new AppointmentManager();
         AppointmentManagerJpaEntity appointmentManagerJpaEntity = mapper.map(appointmentManager, AppointmentManagerJpaEntity.class);
+        AppointmentManagerJpaEntity savedAppointmentManagerJpaEntity = appointmentManagerJpaRepository.save(appointmentManagerJpaEntity);
         hourSlotJpaRepository.saveAll(appointmentManagerJpaEntity.getHourSlots());
-        return appointmentManagerJpaRepository.save(appointmentManagerJpaEntity);
+        return savedAppointmentManagerJpaEntity;
     }
 }
