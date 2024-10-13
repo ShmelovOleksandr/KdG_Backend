@@ -23,6 +23,7 @@ public class AppointmentDomainToJpaConverter implements Converter<Appointment, A
                 appointment.appointmentId().id(),
                 appointment.licensePlate().licensePlateString(),
                 appointment.materialType(),
+                appointment.date(),
                 hourSlot,
                 seller
         );

@@ -10,6 +10,7 @@ import java.util.List;
 @IdClass(HourSlotJpaEntityId.class)
 public class HourSlotJpaEntity {
     @Id
+    @Column(nullable = false)
     private int hour;
 
     @Id

@@ -27,6 +27,7 @@ public class AppointmentRestController {
                 appointment.sellerId(),
                 appointment.licensePlate(),
                 appointment.materialType(),
+                appointment.date(),
                 appointment.preferredHour()
         ));
         AppointmentGetDto appointmentGetDto = AppointmentGetDto.of(savedAppointment);

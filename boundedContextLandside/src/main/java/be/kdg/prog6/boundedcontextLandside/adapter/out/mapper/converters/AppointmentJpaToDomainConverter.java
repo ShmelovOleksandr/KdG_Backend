@@ -15,6 +15,7 @@ public class AppointmentJpaToDomainConverter implements Converter<AppointmentJpa
                 new SellerId(appointmentJpaEntity.getSeller().getId()),
                 new LicensePlate(appointmentJpaEntity.getTruckLicensePlate()),
                 appointmentJpaEntity.getExpectedMaterialType(),
+                appointmentJpaEntity.getDate(),
                 new Hour(appointmentJpaEntity.getHourSlot().getHour())
         );
     }

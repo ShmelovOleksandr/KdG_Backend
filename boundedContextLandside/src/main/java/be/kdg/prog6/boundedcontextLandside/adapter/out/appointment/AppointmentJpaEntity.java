@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -16,32 +17,32 @@ public class AppointmentJpaEntity {
     @Column(unique = true, nullable = false, columnDefinition = "varchar(36)")
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
+
+    @Column(nullable = false)
     private String truckLicensePlate;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MaterialType expectedMaterialType;
 
-    @ManyToOne
+    @Column(nullable = false)
+    private LocalDate date;
+
+    @ManyToOne(optional = false)
     private HourSlotJpaEntity hourSlot;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "seller_id")
     private SellerJpaEntity seller;
 
     public AppointmentJpaEntity() {
     }
 
-    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, SellerJpaEntity seller) {
+    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, LocalDate date, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
         this.id = id;
         this.truckLicensePlate = truckLicensePlate;
         this.expectedMaterialType = expectedMaterialType;
-        this.seller = seller;
-    }
-
-    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
-        this.id = id;
-        this.truckLicensePlate = truckLicensePlate;
-        this.expectedMaterialType = expectedMaterialType;
+        this.date = date;
         this.hourSlot = hourSlot;
         this.seller = seller;
     }
@@ -68,6 +69,14 @@ public class AppointmentJpaEntity {
 
     public void setExpectedMaterialType(MaterialType expectedMaterialType) {
         this.expectedMaterialType = expectedMaterialType;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public HourSlotJpaEntity getHourSlot() {

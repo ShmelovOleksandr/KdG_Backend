@@ -34,12 +34,13 @@ public class AppointmentManager {
         this.hourSlots = hourSlots;
     }
 
-    public Appointment tryScheduleAppointment(SellerId sellerId, LicensePlate truckLicensePlate, MaterialType materialType, Hour prefferedHour) {
+    public Appointment tryScheduleAppointment(SellerId sellerId, LicensePlate truckLicensePlate, MaterialType materialType, LocalDate date, Hour prefferedHour) {
         Appointment appointment = new Appointment(
                 new AppointmentId(UUID.randomUUID()),
                 sellerId,
                 truckLicensePlate,
                 materialType,
+                date,
                 prefferedHour
         );
 
