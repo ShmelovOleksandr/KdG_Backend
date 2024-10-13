@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,6 @@ public class AppointmentManagerJpaEntity {
     private LocalDate managedDate;
 
     @OneToMany(mappedBy = "appointmentManager")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<HourSlotJpaEntity> hourSlots;
 
     public AppointmentManagerJpaEntity() {
@@ -22,6 +22,7 @@ public class AppointmentManagerJpaEntity {
 
     public AppointmentManagerJpaEntity(LocalDate managedDate) {
         this.managedDate = managedDate;
+        this.hourSlots = new ArrayList<>();
     }
 
     public AppointmentManagerJpaEntity(LocalDate managedDate, List<HourSlotJpaEntity> hourSlots) {

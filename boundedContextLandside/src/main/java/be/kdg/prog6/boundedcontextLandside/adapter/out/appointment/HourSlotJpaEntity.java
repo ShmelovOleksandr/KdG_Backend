@@ -14,7 +14,6 @@ public class HourSlotJpaEntity {
 
     @Id
     @ManyToOne(optional = false)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private AppointmentManagerJpaEntity appointmentManager;
 
     @OneToMany(mappedBy = "hourSlot")

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class AppointmentManagerDatabaseAdapter implements FindAppointmentManagerPort {
@@ -29,10 +30,10 @@ public class AppointmentManagerDatabaseAdapter implements FindAppointmentManager
     }
 
     private AppointmentManagerJpaEntity createNewAppointmentManager() {
-        AppointmentManager appointmentManager = new AppointmentManager();
+        AppointmentManagerJpaEntity savedAppointmentManagerJpaEntity = appointmentManagerJpaRepository.save(new AppointmentManagerJpaEntity(LocalDate.now()));
+        AppointmentManager appointmentManager = new AppointmentManager(savedAppointmentManagerJpaEntity.getManagedDate());
         AppointmentManagerJpaEntity appointmentManagerJpaEntity = mapper.map(appointmentManager, AppointmentManagerJpaEntity.class);
-        AppointmentManagerJpaEntity savedAppointmentManagerJpaEntity = appointmentManagerJpaRepository.save(appointmentManagerJpaEntity);
-        hourSlotJpaRepository.saveAll(appointmentManagerJpaEntity.getHourSlots());
+        savedAppointmentManagerJpaEntity.setHourSlots(hourSlotJpaRepository.saveAll(appointmentManagerJpaEntity.getHourSlots()));
         return savedAppointmentManagerJpaEntity;
     }
 }

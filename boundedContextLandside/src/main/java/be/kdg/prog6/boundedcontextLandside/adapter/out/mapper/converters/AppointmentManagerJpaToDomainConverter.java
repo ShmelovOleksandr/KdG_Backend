@@ -19,7 +19,7 @@ public class AppointmentManagerJpaToDomainConverter implements Converter<Appoint
 
         return new AppointmentManager(
                 appointmentManagerJpaEntity.getManagedDate(),
-                appointmentManagerJpaEntity.getHourSlots().stream().map(
+                new ArrayList<>(appointmentManagerJpaEntity.getHourSlots().stream().map(
                         hourSlotJpaEntity -> new HourSlot(
                                 hourSlotJpaEntity.getHour(),
                                 new ArrayList<>(hourSlotJpaEntity.getAppointments().stream().map(
@@ -32,7 +32,7 @@ public class AppointmentManagerJpaToDomainConverter implements Converter<Appoint
                                         )
                                 ).toList())
                         )
-                ).toList()
+                ).toList())
         );
     }
 }

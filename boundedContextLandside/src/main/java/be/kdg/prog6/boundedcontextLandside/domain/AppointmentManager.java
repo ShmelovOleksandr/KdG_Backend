@@ -25,6 +25,10 @@ public class AppointmentManager {
     public AppointmentManager() {
     }
 
+    public AppointmentManager(LocalDate managedDate) {
+        this.managedDate = managedDate;
+    }
+
     public AppointmentManager(LocalDate managedDate, List<HourSlot> hourSlots) {
         this.managedDate = managedDate;
         this.hourSlots = hourSlots;
