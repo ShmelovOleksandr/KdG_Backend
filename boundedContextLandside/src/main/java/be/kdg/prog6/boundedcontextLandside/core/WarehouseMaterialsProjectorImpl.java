@@ -25,7 +25,7 @@ public class WarehouseMaterialsProjectorImpl implements WarehouseMaterialsProjec
     }
 
     @Override
-    public void projectMaterials(WarehouseId warehouseId, WarehouseActivityType activityType, Material material) {
+    public void projectWarehouse(WarehouseId warehouseId, WarehouseActivityType activityType, Material material) {
         Warehouse warehouse = findWarehousePort.findWarehouseById(warehouseId);
         warehouse.updateMaterials(activityType, material);
         warehouseUpdatePort.updateWarehouse(warehouse);

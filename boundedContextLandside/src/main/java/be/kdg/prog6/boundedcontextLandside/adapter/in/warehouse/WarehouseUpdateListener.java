@@ -20,10 +20,8 @@ public class WarehouseUpdateListener {
 
     @RabbitListener(queues = MATERIAL_UPDATED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
     public void warehouseUpdated(WarehouseUpdatedEvent event) {
-        //TODO
         log.info("WarehouseEvent has been received {}", event);
-
-        warehouseMaterialsProjector.projectMaterials(event.warehouseId(), event.activityType(), event.material());
+        warehouseMaterialsProjector.projectWarehouse(event.warehouseId(), event.activityType(), event.material());
     }
 
 }
