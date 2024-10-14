@@ -22,12 +22,8 @@ public class ScheduleAppointmentUseCaseImpl implements ScheduleAppointmentUseCas
     @Override
     @Transactional
     public Appointment scheduleAppointment(ScheduleAppointmentCommand scheduleAppointmentCommand) {
-        // create an appointment
-
-
         AppointmentManager currentAppointmentManager = findAppointmentManagerPort.findAppointmentManagerForDate(scheduleAppointmentCommand.date());
 
-        //checks (in the domain class) (2 rules)
         Appointment savedAppointment = currentAppointmentManager.tryScheduleAppointment(
                 scheduleAppointmentCommand.sellerId(),
                 scheduleAppointmentCommand.truckLicensePlate(),
@@ -36,7 +32,6 @@ public class ScheduleAppointmentUseCaseImpl implements ScheduleAppointmentUseCas
                 scheduleAppointmentCommand.prefferedHour()
         );
 
-        // save an appointment
         appointmentPersistencePort.saveAppointment(savedAppointment);
 
         return savedAppointment;

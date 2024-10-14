@@ -3,11 +3,11 @@ package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 import be.kdg.prog6.boundedcontextLandside.adapter.out.seller.SellerJpaEntity;
 import be.kdg.prog6.boundedcontextLandside.domain.*;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -28,6 +28,10 @@ public class AppointmentJpaEntity {
     @Column(nullable = false)
     private LocalDate date;
 
+    private LocalDateTime entranceTime;
+
+    private LocalDateTime departureTime;
+
     @ManyToOne(optional = false)
     private HourSlotJpaEntity hourSlot;
 
@@ -38,11 +42,13 @@ public class AppointmentJpaEntity {
     public AppointmentJpaEntity() {
     }
 
-    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, LocalDate date, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
+    public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, LocalDate date, LocalDateTime entranceTime, LocalDateTime departureTime, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
         this.id = id;
         this.truckLicensePlate = truckLicensePlate;
         this.expectedMaterialType = expectedMaterialType;
         this.date = date;
+        this.entranceTime = entranceTime;
+        this.departureTime = departureTime;
         this.hourSlot = hourSlot;
         this.seller = seller;
     }
@@ -79,6 +85,22 @@ public class AppointmentJpaEntity {
         this.date = date;
     }
 
+    public LocalDateTime getEntranceTime() {
+        return entranceTime;
+    }
+
+    public void setEntranceTime(LocalDateTime entranceTime) {
+        this.entranceTime = entranceTime;
+    }
+
+    public LocalDateTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(LocalDateTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
     public HourSlotJpaEntity getHourSlot() {
         return hourSlot;
     }
@@ -102,7 +124,26 @@ public class AppointmentJpaEntity {
                 new LicensePlate(this.truckLicensePlate),
                 this.expectedMaterialType,
                 this.date,
-                new Hour(this.hourSlot.getHour())
+                new Hour(this.hourSlot.getHour()),
+                this.entranceTime,
+                this.departureTime
         );
     }
+
+    public static AppointmentJpaEntity of(Appointment appointment) {
+        HourSlotJpaEntity hourSlot = HourSlotJpaEntity.of(new HourSlot(appointment.getArivalHour().hourNumber()));
+        hourSlot.setAppointmentManager(new AppointmentManagerJpaEntity(appointment.getDate()));
+
+        return new AppointmentJpaEntity(
+                appointment.getAppointmentId().id(),
+                appointment.getLicensePlate().licensePlateString(),
+                appointment.getMaterialType(),
+                appointment.getDate(),
+                appointment.getEntranceTime(),
+                appointment.getDepartureTime(),
+                hourSlot,
+                SellerJpaEntity.of(appointment.getSellerId())
+        );
+    }
+
 }

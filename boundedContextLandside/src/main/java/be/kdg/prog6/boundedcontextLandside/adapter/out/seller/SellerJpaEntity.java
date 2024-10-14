@@ -1,5 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.seller;
 
+import be.kdg.prog6.boundedcontextLandside.domain.SellerId;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,5 +28,9 @@ public class SellerJpaEntity {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public static SellerJpaEntity of(SellerId sellerId) {
+        return new SellerJpaEntity(sellerId.id());
     }
 }

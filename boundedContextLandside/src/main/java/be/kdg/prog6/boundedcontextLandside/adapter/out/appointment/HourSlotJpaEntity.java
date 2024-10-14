@@ -1,5 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
+import be.kdg.prog6.boundedcontextLandside.domain.Hour;
 import be.kdg.prog6.boundedcontextLandside.domain.HourSlot;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
@@ -23,6 +24,11 @@ public class HourSlotJpaEntity {
     private List<AppointmentJpaEntity> appointments;
 
     public HourSlotJpaEntity() {
+    }
+
+    public HourSlotJpaEntity(int hour, List<AppointmentJpaEntity> appointments) {
+        this.hour = hour;
+        this.appointments = appointments;
     }
 
     public HourSlotJpaEntity(int hour, AppointmentManagerJpaEntity appointmentManager) {
@@ -64,6 +70,13 @@ public class HourSlotJpaEntity {
         return new HourSlot(
                 this.hour,
                 this.appointments.stream().map(AppointmentJpaEntity::toDomain).collect(Collectors.toList())
+        );
+    }
+
+    public static HourSlotJpaEntity of(HourSlot hourSlot) {
+        return new HourSlotJpaEntity(
+                hourSlot.getHour(),
+                hourSlot.getAppointments().stream().map(AppointmentJpaEntity::of).collect(Collectors.toList())
         );
     }
 }

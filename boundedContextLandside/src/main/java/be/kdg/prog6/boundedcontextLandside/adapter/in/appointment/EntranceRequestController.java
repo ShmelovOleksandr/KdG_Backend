@@ -26,6 +26,5 @@ public class EntranceRequestController {
         EntranceRequest entranceRequest = entranceRequestPostDto.toDomain();
         EntranceRequest handledEntranceRequest = manageTruckArrivalUseCase.manageEntranceRequest(entranceRequest);
         return ResponseEntity.accepted().body(EntranceRequestGetDto.of(handledEntranceRequest));
-
     }
 }

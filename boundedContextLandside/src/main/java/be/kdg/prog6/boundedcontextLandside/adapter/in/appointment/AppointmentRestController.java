@@ -18,17 +18,10 @@ public class AppointmentRestController {
         this.scheduleAppointmentUseCase = scheduleAppointmentUseCase;
     }
 
-
     @PostMapping
     public ResponseEntity<AppointmentGetDto> postAppointment(@RequestBody AppointmentPostDto appointmentPostDto) {
-        Appointment appointment = appointmentPostDto.toAppointment();
-        Appointment savedAppointment = scheduleAppointmentUseCase.scheduleAppointment(new ScheduleAppointmentCommand(
-                appointment.getSellerId(),
-                appointment.getLicensePlate(),
-                appointment.getMaterialType(),
-                appointment.getDate(),
-                appointment.getArivalHour()
-        ));
+        ScheduleAppointmentCommand scheduleAppointmentCommand = appointmentPostDto.toScheduleAppointmentCommand();
+        Appointment savedAppointment = scheduleAppointmentUseCase.scheduleAppointment(scheduleAppointmentCommand);
         AppointmentGetDto appointmentGetDto = AppointmentGetDto.of(savedAppointment);
         return ResponseEntity.status(HttpStatus.CREATED).body(appointmentGetDto);
     }

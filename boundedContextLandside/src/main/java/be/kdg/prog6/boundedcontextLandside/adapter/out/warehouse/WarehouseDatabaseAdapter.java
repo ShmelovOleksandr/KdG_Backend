@@ -5,25 +5,22 @@ import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
 import be.kdg.prog6.boundedcontextLandside.port.out.WarehouseUpdatePort;
 import jakarta.persistence.EntityNotFoundException;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpdatePort  {
-    private final ModelMapper mapper;
     private final WarehouseJpaRepository warehouseJpaRepository;
 
     @Autowired
-    public WarehouseDatabaseAdapter(ModelMapper mapper, WarehouseJpaRepository warehouseJpaRepository) {
-        this.mapper = mapper;
+    public WarehouseDatabaseAdapter(WarehouseJpaRepository warehouseJpaRepository) {
         this.warehouseJpaRepository = warehouseJpaRepository;
     }
 
 
     @Override
     public void updateWarehouse(Warehouse warehouse) {
-        WarehouseJpaEntity warehouseJpaEntity = mapper.map(warehouse, WarehouseJpaEntity.class);
+        WarehouseJpaEntity warehouseJpaEntity = WarehouseJpaEntity.of(warehouse);
         warehouseJpaRepository.save(warehouseJpaEntity);
     }
 
@@ -32,6 +29,6 @@ public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpd
         WarehouseJpaEntity warehouseJpaEntity = warehouseJpaRepository.findByIdWithOwnerFetched(warehouseId.id()).orElseThrow(
                 () -> new EntityNotFoundException("Warehouse with give id [" + warehouseId.id() + "] not found.")
         );
-        return mapper.map(warehouseJpaEntity, Warehouse.class);
+        return warehouseJpaEntity.toDomain();
     }
 }

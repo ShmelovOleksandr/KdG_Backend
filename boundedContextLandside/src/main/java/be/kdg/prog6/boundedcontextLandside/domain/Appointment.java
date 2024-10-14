@@ -27,6 +27,17 @@ public class Appointment {
         this.arivalHour = arivalHour;
     }
 
+    public Appointment(AppointmentId appointmentId, SellerId sellerId, LicensePlate licensePlate, MaterialType materialType, LocalDate date, Hour arivalHour, LocalDateTime entranceTime, LocalDateTime departureTime) {
+        this.appointmentId = appointmentId;
+        this.sellerId = sellerId;
+        this.licensePlate = licensePlate;
+        this.materialType = materialType;
+        this.date = date;
+        this.arivalHour = arivalHour;
+        this.entranceTime = entranceTime;
+        this.departureTime = departureTime;
+    }
+
     public AppointmentId getAppointmentId() {
         return appointmentId;
     }

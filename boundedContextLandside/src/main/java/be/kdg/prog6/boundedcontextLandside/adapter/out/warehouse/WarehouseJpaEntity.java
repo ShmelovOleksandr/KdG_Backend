@@ -1,7 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.warehouse;
 
 import be.kdg.prog6.boundedcontextLandside.adapter.out.seller.SellerJpaEntity;
-import be.kdg.prog6.boundedcontextLandside.domain.MaterialType;
+import be.kdg.prog6.boundedcontextLandside.domain.*;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -75,5 +75,24 @@ public class WarehouseJpaEntity {
 
     public void setMaterialTypeStored(MaterialType materialTypeStored) {
         this.materialTypeStored = materialTypeStored;
+    }
+
+    public static WarehouseJpaEntity of(Warehouse warehouse) {
+        return new WarehouseJpaEntity(
+                warehouse.getWarehouseId().id(),
+                SellerJpaEntity.of(warehouse.getOwnerId()),
+                warehouse.getMaximumMaterialTons(),
+                warehouse.getCurrentlyStoredMaterial().getTons(),
+                warehouse.getCurrentlyStoredMaterial().getMaterialType()
+        );
+    }
+
+    public Warehouse toDomain() {
+        return new Warehouse(
+                new WarehouseId(this.id),
+                new SellerId(this.owner.getId()),
+                new Material(this.materialTypeStored, this.currentCapacity),
+                this.maxCapacity
+        );
     }
 }
