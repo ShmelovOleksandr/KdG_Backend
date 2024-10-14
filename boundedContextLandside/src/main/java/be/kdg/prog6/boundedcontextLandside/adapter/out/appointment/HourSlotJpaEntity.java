@@ -1,9 +1,11 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
+import be.kdg.prog6.boundedcontextLandside.domain.HourSlot;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "hour_slots")
@@ -56,5 +58,12 @@ public class HourSlotJpaEntity {
 
     public void setAppointments(List<AppointmentJpaEntity> appointments) {
         this.appointments = appointments;
+    }
+
+    public HourSlot toDomain() {
+        return new HourSlot(
+                this.hour,
+                this.appointments.stream().map(AppointmentJpaEntity::toDomain).collect(Collectors.toList())
+        );
     }
 }

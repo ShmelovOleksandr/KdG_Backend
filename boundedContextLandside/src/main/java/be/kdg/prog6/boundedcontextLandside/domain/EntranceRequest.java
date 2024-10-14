@@ -3,23 +3,17 @@ package be.kdg.prog6.boundedcontextLandside.domain;
 import java.time.LocalDateTime;
 
 public class EntranceRequest {
-    private EntranceRequestId entranceRequestId;
     private LicensePlate licensePlate;
     private LocalDateTime requestTime;
     private boolean isApproved;
-
+    private Appointment approvedAppointment;
 
 
     public EntranceRequest(LicensePlate licensePlate) {
         this.licensePlate = licensePlate;
-    }
-
-    public EntranceRequestId getEntranceRequestId() {
-        return entranceRequestId;
-    }
-
-    public void setEntranceRequestId(EntranceRequestId entranceRequestId) {
-        this.entranceRequestId = entranceRequestId;
+        this.requestTime = LocalDateTime.now();
+        this.isApproved = false;
+        this.approvedAppointment = null;
     }
 
     public LicensePlate getLicensePlate() {
@@ -44,5 +38,13 @@ public class EntranceRequest {
 
     public void setApproved(boolean approved) {
         isApproved = approved;
+    }
+
+    public Appointment getApprovedAppointment() {
+        return approvedAppointment;
+    }
+
+    public void setApprovedAppointment(Appointment approvedAppointment) {
+        this.approvedAppointment = approvedAppointment;
     }
 }

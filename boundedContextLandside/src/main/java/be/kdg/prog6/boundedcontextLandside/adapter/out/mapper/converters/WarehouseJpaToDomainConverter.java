@@ -7,6 +7,8 @@ import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
+import org.springframework.stereotype.Component;
+
 
 
 public class WarehouseJpaToDomainConverter implements Converter<WarehouseJpaEntity, Warehouse> {

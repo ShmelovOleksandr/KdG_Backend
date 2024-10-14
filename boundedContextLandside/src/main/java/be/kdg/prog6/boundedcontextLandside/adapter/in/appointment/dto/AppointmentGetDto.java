@@ -8,12 +8,12 @@ import java.util.UUID;
 public record AppointmentGetDto(UUID appointmentId, UUID sellerId, String licensePlate, MaterialType materialType, LocalDate scheduledDate, int preferredHour) {
     public static AppointmentGetDto of(Appointment appointment) {
         return new AppointmentGetDto(
-                appointment.appointmentId().id(),
-                appointment.sellerId().id(),
-                appointment.licensePlate().licensePlateString(),
-                appointment.materialType(),
-                appointment.date(),
-                appointment.preferredHour().hourNumber()
+                appointment.getAppointmentId().id(),
+                appointment.getSellerId().id(),
+                appointment.getLicensePlate().licensePlateString(),
+                appointment.getMaterialType(),
+                appointment.getDate(),
+                appointment.getArivalHour().hourNumber()
         );
     }
 }

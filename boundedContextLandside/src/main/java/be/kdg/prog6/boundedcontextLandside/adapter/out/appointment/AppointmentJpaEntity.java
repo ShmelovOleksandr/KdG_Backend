@@ -1,7 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
 import be.kdg.prog6.boundedcontextLandside.adapter.out.seller.SellerJpaEntity;
-import be.kdg.prog6.boundedcontextLandside.domain.MaterialType;
+import be.kdg.prog6.boundedcontextLandside.domain.*;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -93,5 +93,16 @@ public class AppointmentJpaEntity {
 
     public void setSeller(SellerJpaEntity seller) {
         this.seller = seller;
+    }
+
+    public Appointment toDomain() {
+        return new Appointment(
+                new AppointmentId(this.id),
+                new SellerId(this.seller.getId()),
+                new LicensePlate(this.truckLicensePlate),
+                this.expectedMaterialType,
+                this.date,
+                new Hour(this.hourSlot.getHour())
+        );
     }
 }

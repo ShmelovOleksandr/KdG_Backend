@@ -26,12 +26,12 @@ public class AppointmentManagerDomainToJpaConverter implements Converter<Appoint
         List<HourSlotJpaEntity> hourSlotsJpaEntities = hourSlots.stream().map(hourSlot -> {
             HourSlotJpaEntity hourSlotJpaEntity = new HourSlotJpaEntity(hourSlot.getHour(), appointmentManagerJpaEntity);
             List<AppointmentJpaEntity> appointmentJpaEntities = hourSlot.getAppointments().stream().map(appointment -> new AppointmentJpaEntity(
-                    appointment.appointmentId().id(),
-                    appointment.licensePlate().licensePlateString(),
-                    appointment.materialType(),
-                    appointment.date(),
+                    appointment.getAppointmentId().id(),
+                    appointment.getLicensePlate().licensePlateString(),
+                    appointment.getMaterialType(),
+                    appointment.getDate(),
                     hourSlotJpaEntity,
-                    new SellerJpaEntity(appointment.sellerId().id())
+                    new SellerJpaEntity(appointment.getSellerId().id())
             )).toList();
             hourSlotJpaEntity.setAppointments(appointmentJpaEntities);
             return hourSlotJpaEntity;
