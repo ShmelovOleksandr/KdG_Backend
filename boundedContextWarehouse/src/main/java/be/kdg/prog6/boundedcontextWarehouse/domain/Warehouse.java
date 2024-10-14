@@ -1,8 +1,5 @@
 package be.kdg.prog6.boundedcontextWarehouse.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.math.BigDecimal;
 
 public class Warehouse {

@@ -131,7 +131,7 @@ public class AppointmentJpaEntity {
     }
 
     public static AppointmentJpaEntity of(Appointment appointment) {
-        HourSlotJpaEntity hourSlot = HourSlotJpaEntity.of(new HourSlot(appointment.getArivalHour().hourNumber()));
+        HourSlotJpaEntity hourSlot = HourSlotJpaEntity.of(new HourSlot(appointment.getArrivalHour().hourNumber()));
         hourSlot.setAppointmentManager(new AppointmentManagerJpaEntity(appointment.getDate()));
 
         return new AppointmentJpaEntity(

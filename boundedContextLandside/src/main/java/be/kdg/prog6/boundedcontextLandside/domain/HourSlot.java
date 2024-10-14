@@ -2,12 +2,10 @@ package be.kdg.prog6.boundedcontextLandside.domain;
 
 import be.kdg.prog6.boundedcontextLandside.domain.exception.AppointmentForGivenLicensePlateNotFoundException;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.NoFreeAppointmentsSlots;
-import jakarta.persistence.EntityNotFoundException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class HourSlot {
     //TODO Move to the .properties file
@@ -34,7 +32,7 @@ public class HourSlot {
 
     public Appointment scheduleAnAppointment(Appointment appointment) {
         if (!hasAvailableSlots())
-            throw new NoFreeAppointmentsSlots("There are no free appointment slots for %s:00".formatted(appointment.getArivalHour()));
+            throw new NoFreeAppointmentsSlots("There are no free appointment slots for %s:00".formatted(appointment.getArrivalHour()));
 
         this.appointments.add(appointment);
         return appointment;

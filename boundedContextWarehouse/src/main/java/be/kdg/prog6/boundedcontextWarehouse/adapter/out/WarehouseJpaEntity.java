@@ -1,17 +1,14 @@
 package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
 
 import be.kdg.prog6.boundedcontextWarehouse.domain.MaterialType;
-import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivityWindow;
+import be.kdg.prog6.boundedcontextWarehouse.domain.SellerId;
+import be.kdg.prog6.boundedcontextWarehouse.domain.Warehouse;
+import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseId;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -93,5 +90,25 @@ public class WarehouseJpaEntity {
 
     public void setWarehouseActivityWindow(WarehouseActivityWindowJpaEntity warehouseActivityWindow) {
         this.warehouseActivityWindow = warehouseActivityWindow;
+    }
+
+    public static WarehouseJpaEntity of(Warehouse warehouse) {
+        return new WarehouseJpaEntity(
+                warehouse.getId().id(),
+                SellerJpaEntity.of(warehouse.getOwnerId().id()),
+                warehouse.getMaxCapacity(),
+                warehouse.getCurrentTons(),
+                warehouse.getMaterialTypeStored(),
+                WarehouseActivityWindowJpaEntity.of(warehouse.getWarehouseActivityWindow())
+        );
+    }
+
+    public Warehouse toDomain() {
+        return new Warehouse(
+                new WarehouseId(this.id),
+                new SellerId(this.seller.getId()),
+                this.maxCapacity,
+                this.materialTypeStored
+        );
     }
 }

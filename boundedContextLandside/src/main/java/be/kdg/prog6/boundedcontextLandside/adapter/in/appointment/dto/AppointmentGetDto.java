@@ -13,7 +13,7 @@ public record AppointmentGetDto(UUID appointmentId, UUID sellerId, String licens
                 appointment.getLicensePlate().licensePlateString(),
                 appointment.getMaterialType(),
                 appointment.getDate(),
-                appointment.getArivalHour().hourNumber()
+                appointment.getArrivalHour().hourNumber()
         );
     }
 }

@@ -1,11 +1,8 @@
 package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
 
+import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivity;
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivityType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -65,5 +62,14 @@ public class WarehouseActivityJpaEntity {
 
     public void setTons(BigDecimal tons) {
         this.tons = tons;
+    }
+
+    public static WarehouseActivityJpaEntity of(WarehouseActivity warehouseActivity) {
+        return new WarehouseActivityJpaEntity(
+                warehouseActivity.warehouseActivityId().id(),
+                warehouseActivity.warehouseId().id(),
+                warehouseActivity.warehouseActivityType(),
+                warehouseActivity.tons()
+        );
     }
 }

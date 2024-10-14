@@ -11,29 +11,29 @@ public class Appointment {
     private LicensePlate licensePlate;
     private MaterialType materialType;
     private LocalDate date;
-    private Hour arivalHour;
+    private Hour arrivalHour;
     private LocalDateTime entranceTime;
     private LocalDateTime departureTime;
 
     public Appointment() {
     }
 
-    public Appointment(AppointmentId appointmentId, SellerId sellerId, LicensePlate licensePlate, MaterialType materialType, LocalDate date, Hour arivalHour) {
+    public Appointment(AppointmentId appointmentId, SellerId sellerId, LicensePlate licensePlate, MaterialType materialType, LocalDate date, Hour arrivalHour) {
         this.appointmentId = appointmentId;
         this.sellerId = sellerId;
         this.licensePlate = licensePlate;
         this.materialType = materialType;
         this.date = date;
-        this.arivalHour = arivalHour;
+        this.arrivalHour = arrivalHour;
     }
 
-    public Appointment(AppointmentId appointmentId, SellerId sellerId, LicensePlate licensePlate, MaterialType materialType, LocalDate date, Hour arivalHour, LocalDateTime entranceTime, LocalDateTime departureTime) {
+    public Appointment(AppointmentId appointmentId, SellerId sellerId, LicensePlate licensePlate, MaterialType materialType, LocalDate date, Hour arrivalHour, LocalDateTime entranceTime, LocalDateTime departureTime) {
         this.appointmentId = appointmentId;
         this.sellerId = sellerId;
         this.licensePlate = licensePlate;
         this.materialType = materialType;
         this.date = date;
-        this.arivalHour = arivalHour;
+        this.arrivalHour = arrivalHour;
         this.entranceTime = entranceTime;
         this.departureTime = departureTime;
     }
@@ -78,12 +78,12 @@ public class Appointment {
         this.date = date;
     }
 
-    public Hour getArivalHour() {
-        return arivalHour;
+    public Hour getArrivalHour() {
+        return arrivalHour;
     }
 
-    public void setArivalHour(Hour arivalHour) {
-        this.arivalHour = arivalHour;
+    public void setArrivalHour(Hour arrivalHour) {
+        this.arrivalHour = arrivalHour;
     }
 
     public LocalDateTime getEntranceTime() {

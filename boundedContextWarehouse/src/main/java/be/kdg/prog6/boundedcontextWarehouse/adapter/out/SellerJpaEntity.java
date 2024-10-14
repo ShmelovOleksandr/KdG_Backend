@@ -1,10 +1,6 @@
 package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
@@ -45,5 +41,9 @@ public class SellerJpaEntity {
 
     public void setWarehouses(List<WarehouseJpaEntity> warehouses) {
         this.warehouses = warehouses;
+    }
+
+    public static SellerJpaEntity of(UUID sellerId) {
+        return new SellerJpaEntity(sellerId);
     }
 }
