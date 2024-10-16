@@ -1,5 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.warehouse;
 
+import be.kdg.prog6.boundedcontextLandside.domain.MaterialType;
+import be.kdg.prog6.boundedcontextLandside.domain.SellerId;
 import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
@@ -28,6 +30,14 @@ public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpd
     public Warehouse findWarehouseById(WarehouseId warehouseId) {
         WarehouseJpaEntity warehouseJpaEntity = warehouseJpaRepository.findByIdWithOwnerFetched(warehouseId.id()).orElseThrow(
                 () -> new EntityNotFoundException("Warehouse with give id [" + warehouseId.id() + "] not found.")
+        );
+        return warehouseJpaEntity.toDomain();
+    }
+
+    @Override
+    public Warehouse findWarehouseBySellerIdAndMaterialTypeStored(SellerId sellerId, MaterialType materialTypeStored) {
+        WarehouseJpaEntity warehouseJpaEntity = warehouseJpaRepository.findBySellerIdAndMaterialTypeStored(sellerId.id(), materialTypeStored).orElseThrow(
+                () -> new EntityNotFoundException("Warehouse with give SellerId [%s] and MaterialType [%s] not found.".formatted(sellerId.id(), materialTypeStored.name()))
         );
         return warehouseJpaEntity.toDomain();
     }

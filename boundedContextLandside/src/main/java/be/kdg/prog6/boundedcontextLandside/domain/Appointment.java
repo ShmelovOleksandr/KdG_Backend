@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Appointment {
-
     private AppointmentId appointmentId;
     private SellerId sellerId;
     private LicensePlate licensePlate;

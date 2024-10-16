@@ -5,6 +5,7 @@ import be.kdg.prog6.boundedcontextLandside.domain.exception.WarehouseMaterialTyp
 import java.math.BigDecimal;
 
 public class Warehouse {
+    private final static BigDecimal MAX_CAPACITY_TO_MAKE_APPOINTMENT = new BigDecimal(80);
     private WarehouseId warehouseId;
     private SellerId ownerId;
     private Material currentlyStoredMaterial;
@@ -60,5 +61,9 @@ public class Warehouse {
 
     public void setMaximumMaterialTons(BigDecimal maximumMaterialTons) {
         this.maximumMaterialTons = maximumMaterialTons;
+    }
+
+    public boolean materialCanBeStored() {
+        return maximumMaterialTons.divide(currentlyStoredMaterial.getTons().multiply(new BigDecimal(100))).compareTo(MAX_CAPACITY_TO_MAKE_APPOINTMENT) == -1;
     }
 }
