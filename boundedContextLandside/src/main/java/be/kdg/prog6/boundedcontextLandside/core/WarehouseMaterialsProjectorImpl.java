@@ -1,9 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.core;
 
-import be.kdg.prog6.boundedcontextLandside.domain.Material;
-import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
-import be.kdg.prog6.boundedcontextLandside.domain.WarehouseActivityType;
-import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
+import be.kdg.prog6.boundedcontextLandside.domain.*;
 import be.kdg.prog6.boundedcontextLandside.port.in.WarehouseMaterialsProjector;
 import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
 import be.kdg.prog6.boundedcontextLandside.port.out.WarehouseUpdatePort;
@@ -11,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 public class WarehouseMaterialsProjectorImpl implements WarehouseMaterialsProjector {
@@ -25,9 +24,9 @@ public class WarehouseMaterialsProjectorImpl implements WarehouseMaterialsProjec
     }
 
     @Override
-    public void projectWarehouse(WarehouseId warehouseId, WarehouseActivityType activityType, Material material) {
+    public void projectWarehouse(WarehouseId warehouseId, WarehouseActivityType activityType, MaterialType materialType, BigDecimal tons) {
         Warehouse warehouse = findWarehousePort.findWarehouseById(warehouseId);
-        warehouse.updateMaterials(activityType, material);
+        warehouse.updateMaterials(activityType, new Material(materialType, tons));
         warehouseUpdatePort.updateWarehouse(warehouse);
         LOGGER.info("Warehouse {} updated. Current material: {}", warehouseId, warehouse.getCurrentlyStoredMaterial());
     }
