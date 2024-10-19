@@ -1,5 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.core;
 
+import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextLandside.port.in.DumpPayloadUseCase;
 import be.kdg.prog6.boundedcontextLandside.port.out.AnnounceConveyorPayloadDumpPort;
@@ -16,7 +17,7 @@ public class DumpPayloadUseCaseImpl implements DumpPayloadUseCase {
     }
 
     @Override
-    public void handlePayloadDelivery(WarehouseId warehouseId) {
-        announceConveyorPayloadDumpPort.announceConveyorPayloadDump(warehouseId);
+    public void handlePayloadDelivery(AppointmentId appointmentId, WarehouseId warehouseId) {
+        announceConveyorPayloadDumpPort.announceConveyorPayloadDump(appointmentId, warehouseId);
     }
 }

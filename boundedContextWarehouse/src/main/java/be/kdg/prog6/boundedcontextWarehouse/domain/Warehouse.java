@@ -1,6 +1,8 @@
 package be.kdg.prog6.boundedcontextWarehouse.domain;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Warehouse {
     private final WarehouseId id;
@@ -57,5 +59,15 @@ public class Warehouse {
 
     public void setWarehouseActivityWindow(WarehouseActivityWindow warehouseActivityWindow) {
         this.warehouseActivityWindow = warehouseActivityWindow;
+    }
+
+    public PDT generatePDT(AppointmentId appointmentId, LocalDateTime deliveryTime) {
+        return new PDT(
+                new PDTId(UUID.randomUUID()),
+                new AppointmentId(appointmentId.id()),
+                deliveryTime,
+                this.id,
+                this.materialTypeStored
+        );
     }
 }

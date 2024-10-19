@@ -1,13 +1,11 @@
 package be.kdg.prog6.boundedcontextWarehouse.adapter.in;
 
-import be.kdg.prog6.boundedcontextWarehouse.adapter.out.WarehouseJpaRepository;
 import be.kdg.prog6.boundedcontextWarehouse.domain.Material;
 import be.kdg.prog6.boundedcontextWarehouse.domain.MaterialType;
 import be.kdg.prog6.boundedcontextWarehouse.domain.SellerId;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialCommand;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

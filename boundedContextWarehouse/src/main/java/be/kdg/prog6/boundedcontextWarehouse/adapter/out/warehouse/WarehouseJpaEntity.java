@@ -1,5 +1,6 @@
-package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
+package be.kdg.prog6.boundedcontextWarehouse.adapter.out.warehouse;
 
+import be.kdg.prog6.boundedcontextWarehouse.adapter.out.seller.SellerJpaEntity;
 import be.kdg.prog6.boundedcontextWarehouse.domain.MaterialType;
 import be.kdg.prog6.boundedcontextWarehouse.domain.SellerId;
 import be.kdg.prog6.boundedcontextWarehouse.domain.Warehouse;
@@ -33,6 +34,10 @@ public class WarehouseJpaEntity {
     private WarehouseActivityWindowJpaEntity warehouseActivityWindow;
 
     public WarehouseJpaEntity() {
+    }
+
+    public WarehouseJpaEntity(UUID id) {
+        this.id = id;
     }
 
     public WarehouseJpaEntity(UUID id, SellerJpaEntity seller, BigDecimal maxCapacity, BigDecimal currentCapacity, MaterialType materialTypeStored, WarehouseActivityWindowJpaEntity warehouseActivityWindow) {

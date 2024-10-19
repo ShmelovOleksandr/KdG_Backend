@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
+package be.kdg.prog6.boundedcontextWarehouse.adapter.out.warehouse;
 
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivity;
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivityType;

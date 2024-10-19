@@ -1,5 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.weighting_bridge;
 
+import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextLandside.port.out.AnnounceConveyorPayloadDumpPort;
 import be.kdg.prog6.common.events.ConveyorPayloadDumpEvent;
@@ -25,12 +26,13 @@ public class ConveyorPayloadDumpPortEventPublisher implements AnnounceConveyorPa
     }
 
     @Override
-    public void announceConveyorPayloadDump(WarehouseId destinaitonWarehouseId) {
+    public void announceConveyorPayloadDump(AppointmentId appointmentId, WarehouseId destinaitonWarehouseId) {
         final String ROUTING_KEY = "warehouse.%s.material.dumped".formatted(destinaitonWarehouseId.id());
         LOGGER.info("Notifying RabbitMQ: {}", ROUTING_KEY);
         rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, new ConveyorPayloadDumpEvent(
                 UUID.randomUUID(),
                 LocalDateTime.now().toString(),
+                appointmentId.id(),
                 destinaitonWarehouseId.id()
         ));
     }

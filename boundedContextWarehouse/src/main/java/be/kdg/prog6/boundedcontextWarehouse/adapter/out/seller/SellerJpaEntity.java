@@ -1,5 +1,6 @@
-package be.kdg.prog6.boundedcontextWarehouse.adapter.out;
+package be.kdg.prog6.boundedcontextWarehouse.adapter.out.seller;
 
+import be.kdg.prog6.boundedcontextWarehouse.adapter.out.warehouse.WarehouseJpaEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
