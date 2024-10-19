@@ -17,6 +17,7 @@ public class RabbitMQTopology {
 
     public static final String WAREHOUSE_EVENTS_EXCHANGE = "warehouse_events";
     public static final String MATERIAL_UPDATED_QUEUE = "material_updated";
+    public static final String MATERIAL_DUMPED_QUEUE = "material_dumped";
 
     @Bean
     TopicExchange warehouseEventsExchange() {
@@ -29,11 +30,24 @@ public class RabbitMQTopology {
     }
 
     @Bean
-    Binding warehosueBinding(TopicExchange warehouseEventsExchange, Queue materialUpdatedQueue) {
+    Binding warehosueUpdateBinding(TopicExchange warehouseEventsExchange, Queue materialUpdatedQueue) {
         return BindingBuilder
                 .bind(materialUpdatedQueue)
                 .to(warehouseEventsExchange)
                 .with("warehouse.#.material.updated");
+    }
+
+    @Bean
+    Queue materialDumpedQueue() {
+        return new Queue(MATERIAL_DUMPED_QUEUE, true);
+    }
+
+    @Bean
+    Binding warehosueDumpBinding(TopicExchange warehouseEventsExchange, Queue materialDumpedQueue) {
+        return BindingBuilder
+                .bind(materialDumpedQueue)
+                .to(warehouseEventsExchange)
+                .with("warehouse.#.material.dumped");
     }
 
     @Bean

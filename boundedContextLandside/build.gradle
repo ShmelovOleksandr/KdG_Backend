@@ -12,5 +12,6 @@ dependencies {
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
     runtimeOnly 'org.postgresql:postgresql'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 }
 
