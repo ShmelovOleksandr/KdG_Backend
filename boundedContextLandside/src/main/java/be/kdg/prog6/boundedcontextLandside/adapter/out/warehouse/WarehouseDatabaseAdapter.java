@@ -29,7 +29,7 @@ public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpd
     @Override
     public Warehouse findWarehouseById(WarehouseId warehouseId) {
         WarehouseJpaEntity warehouseJpaEntity = warehouseJpaRepository.findByIdWithOwnerFetched(warehouseId.id()).orElseThrow(
-                () -> new EntityNotFoundException("Warehouse with give id [" + warehouseId.id() + "] not found.")
+                () -> new EntityNotFoundException("Warehouse with give wbtId [" + warehouseId.id() + "] not found.")
         );
         return warehouseJpaEntity.toDomain();
     }

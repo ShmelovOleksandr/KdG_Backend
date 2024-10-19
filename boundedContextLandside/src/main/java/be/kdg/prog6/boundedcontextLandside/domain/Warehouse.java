@@ -1,11 +1,12 @@
 package be.kdg.prog6.boundedcontextLandside.domain;
 
 import be.kdg.prog6.boundedcontextLandside.domain.exception.WarehouseMaterialTypeMismatchException;
+import be.kdg.prog6.boundedcontextLandside.domain.exception.WarehouseMaxMaterialIsZeroException;
 
 import java.math.BigDecimal;
 
 public class Warehouse {
-    private final static BigDecimal MAX_CAPACITY_TO_MAKE_APPOINTMENT = new BigDecimal(80);
+    private final static int MAX_CAPACITY_PERCENTAGE_TO_MAKE_APPOINTMENT = 80;
     private WarehouseId warehouseId;
     private SellerId ownerId;
     private Material currentlyStoredMaterial;
@@ -64,6 +65,9 @@ public class Warehouse {
     }
 
     public boolean materialCanBeStored() {
-        return maximumMaterialTons.divide(currentlyStoredMaterial.getTons().multiply(new BigDecimal(100))).compareTo(MAX_CAPACITY_TO_MAKE_APPOINTMENT) == -1;
+        if (maximumMaterialTons.doubleValue() == 0.0)
+            throw new WarehouseMaxMaterialIsZeroException("Warehouse maximum material is zero.");
+
+        return currentlyStoredMaterial.getTons().multiply(new BigDecimal(100)).divide(maximumMaterialTons).doubleValue() < MAX_CAPACITY_PERCENTAGE_TO_MAKE_APPOINTMENT;
     }
 }

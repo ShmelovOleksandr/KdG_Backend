@@ -1,6 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.domain;
 
-import be.kdg.prog6.boundedcontextLandside.domain.exception.AppointmentForGivenLicensePlateNotFoundException;
+import be.kdg.prog6.boundedcontextLandside.adapter.out.appointment.exception.AppointmentForGivenLicensePlateNotFoundException;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.NoFreeAppointmentsSlots;
 
 import java.time.LocalDateTime;

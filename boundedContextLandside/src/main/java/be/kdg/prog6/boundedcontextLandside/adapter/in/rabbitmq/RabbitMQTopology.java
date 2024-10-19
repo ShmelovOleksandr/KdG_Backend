@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQTopology {
+    public static final String WEIGHTING_BRIDGE_EVENTS_EXCHANGE = "weighting_bridge_events";
+    public static final String WEIGHTING_BRIDGE_PASSAGE_QUEUE = "truck_movement";
+
     public static final String WAREHOUSE_EVENTS_EXCHANGE = "warehouse_events";
     public static final String MATERIAL_UPDATED_QUEUE = "material_updated";
 
@@ -21,16 +24,34 @@ public class RabbitMQTopology {
     }
 
     @Bean
-    Queue materialReceivedQueue() {
+    Queue materialUpdatedQueue() {
         return new Queue(MATERIAL_UPDATED_QUEUE, true);
     }
 
     @Bean
-    Binding binding(TopicExchange exchange, Queue queue) {
+    Binding warehosueBinding(TopicExchange warehouseEventsExchange, Queue materialUpdatedQueue) {
         return BindingBuilder
-                .bind(queue)
-                .to(exchange)
+                .bind(materialUpdatedQueue)
+                .to(warehouseEventsExchange)
                 .with("warehouse.#.material.updated");
+    }
+
+    @Bean
+    TopicExchange weightingBridgeEventsExchange() {
+        return new TopicExchange(WEIGHTING_BRIDGE_EVENTS_EXCHANGE);
+    }
+
+    @Bean
+    Queue truckQueue() {
+        return new Queue(WEIGHTING_BRIDGE_PASSAGE_QUEUE, true);
+    }
+
+    @Bean
+    Binding weightingBridgeBinding(TopicExchange weightingBridgeEventsExchange, Queue truckQueue) {
+        return BindingBuilder
+                .bind(truckQueue)
+                .to(weightingBridgeEventsExchange)
+                .with("weightingbridge.passed");
     }
 
     @Bean

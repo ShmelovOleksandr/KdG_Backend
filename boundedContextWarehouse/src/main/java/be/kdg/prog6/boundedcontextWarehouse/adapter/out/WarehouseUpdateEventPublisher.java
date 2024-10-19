@@ -15,7 +15,6 @@ import java.util.UUID;
 @Component
 public class WarehouseUpdateEventPublisher implements NotifyWarehouseUpdatePort {
     private static final Logger LOGGER = LoggerFactory.getLogger(WarehouseUpdateEventPublisher.class);
-
     private static final String EXCHANGE_NAME = "warehouse_events";
 
 

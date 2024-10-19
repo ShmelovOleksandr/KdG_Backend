@@ -1,8 +1,10 @@
 package be.kdg.prog6.boundedcontextLandside.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Appointment {
     private AppointmentId appointmentId;
@@ -35,6 +37,14 @@ public class Appointment {
         this.arrivalHour = arrivalHour;
         this.entranceTime = entranceTime;
         this.departureTime = departureTime;
+    }
+
+    public WBT createWeighBridgeTransaction(BigDecimal entranceWeight) {
+        return new WBT(
+                new WBTId(UUID.randomUUID()),
+                this.appointmentId,
+                entranceWeight
+        );
     }
 
     public AppointmentId getAppointmentId() {

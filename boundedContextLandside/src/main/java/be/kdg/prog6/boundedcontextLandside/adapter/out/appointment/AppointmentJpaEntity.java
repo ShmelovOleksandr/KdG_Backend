@@ -42,6 +42,10 @@ public class AppointmentJpaEntity {
     public AppointmentJpaEntity() {
     }
 
+    public AppointmentJpaEntity(UUID id) {
+        this.id = id;
+    }
+
     public AppointmentJpaEntity(UUID id, String truckLicensePlate, MaterialType expectedMaterialType, LocalDate date, LocalDateTime entranceTime, LocalDateTime departureTime, HourSlotJpaEntity hourSlot, SellerJpaEntity seller) {
         this.id = id;
         this.truckLicensePlate = truckLicensePlate;

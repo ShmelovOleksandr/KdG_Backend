@@ -1,5 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.domain;
 
-public class WeightBridgeEntranceCommand {
-    private AppointmentId appointmentId;
+import java.math.BigDecimal;
+
+public record WeightBridgeEntranceCommand(AppointmentId appointmentId, BigDecimal weight) {
 }

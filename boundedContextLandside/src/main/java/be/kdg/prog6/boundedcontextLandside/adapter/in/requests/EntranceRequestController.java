@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.in.appointment;
+package be.kdg.prog6.boundedcontextLandside.adapter.in.requests;
 
 import be.kdg.prog6.boundedcontextLandside.adapter.in.appointment.dto.EntranceRequestGetDto;
 import be.kdg.prog6.boundedcontextLandside.adapter.in.appointment.dto.EntranceRequestPostDto;
