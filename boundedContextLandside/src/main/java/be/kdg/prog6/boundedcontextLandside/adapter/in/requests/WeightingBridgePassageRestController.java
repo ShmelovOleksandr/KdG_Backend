@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/weightingbridge_passage_requests")
+@RequestMapping("/api/v1/requests/weightingbridge_passage")
 public class WeightingBridgePassageRestController {
     private final EnterWeightingBridgeUseCase enterWeightingBridgeUseCase;
     private final ExitWeightingBridgeUseCase exitWeightingBridgeUseCase;
