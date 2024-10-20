@@ -23,14 +23,17 @@ public class WarehouseJpaEntity {
     @ManyToOne(optional = false)
     private SellerJpaEntity seller;
 
+    @Column(nullable = false)
     private BigDecimal maxCapacity;
+
     private BigDecimal currentCapacity;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private MaterialType materialTypeStored;
 
     @OneToOne
-    @JoinColumn(name = "warehouseActivityId", referencedColumnName = "warehouseId")
+    @JoinColumn(name = "warehouseActivityWindowId", referencedColumnName = "warehouseId")
     private WarehouseActivityWindowJpaEntity warehouseActivityWindow;
 
     public WarehouseJpaEntity() {

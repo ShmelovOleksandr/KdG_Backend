@@ -1,10 +1,7 @@
 package be.kdg.prog6.boundedcontextWarehouse.adapter.out.warehouse;
 
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseActivityWindow;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,9 +11,10 @@ import java.util.stream.Collectors;
 @Table(name = "warehouse_activity_windows")
 public class WarehouseActivityWindowJpaEntity {
     @Id
+    @Column(nullable = false)
     private UUID warehouseId;
 
-    @OneToMany
+    @OneToMany(mappedBy = "warehouseActivityWindow")
     private List<WarehouseActivityJpaEntity> activities;
 
     public WarehouseActivityWindowJpaEntity() {

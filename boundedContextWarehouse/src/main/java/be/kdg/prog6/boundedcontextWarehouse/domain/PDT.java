@@ -31,6 +31,10 @@ public class PDT {
         this.deliveredWeigh = deliveredWeigh;
     }
 
+    public void enrich(BigDecimal weight) {
+        this.deliveredWeigh = weight;
+    }
+
     public PDTId getId() {
         return id;
     }

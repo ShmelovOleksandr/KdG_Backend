@@ -5,7 +5,7 @@ import be.kdg.prog6.boundedcontextWarehouse.domain.PDT;
 import be.kdg.prog6.boundedcontextWarehouse.domain.Warehouse;
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.HandleConveyorPayloadDumpPort;
-import be.kdg.prog6.boundedcontextWarehouse.port.out.PersistPDTPort;
+import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.PersistPDTPort;
 import be.kdg.prog6.boundedcontextWarehouse.port.out.persistance.FindWarehousePort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +30,5 @@ public class ConveyorPayloadDumpHandler implements HandleConveyorPayloadDumpPort
         PDT pdt = warehouse.generatePDT(appointmentId, timestamp);
 
         persistPDTPort.save(pdt);
-
     }
 }

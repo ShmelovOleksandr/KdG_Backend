@@ -29,12 +29,8 @@ public class Warehouse {
         return warehouseActivityWindow.getCurrentTons();
     }
 
-    public WarehouseActivity addMaterial(Material material) {
-        MaterialType materialType = material.materialType();
-        if (!materialTypeStored.equals(materialType))
-            throw new RuntimeException("Material type (%s) is not stored in this warehouse (%s).".formatted(materialType, id));
-
-        return warehouseActivityWindow.addWarehouseActivity(WarehouseActivityType.INCREASE, material.tons());
+    public WarehouseActivity addMaterialTons(BigDecimal tons) {
+        return warehouseActivityWindow.addWarehouseActivity(WarehouseActivityType.INCREASE, tons);
     }
 
     public WarehouseId getId() {

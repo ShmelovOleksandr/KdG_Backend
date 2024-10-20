@@ -2,7 +2,7 @@ package be.kdg.prog6.boundedcontextLandside.adapter.out.weighting_bridge;
 
 import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
-import be.kdg.prog6.boundedcontextLandside.port.out.AnnounceConveyorPayloadDumpPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.messaging.AnnounceConveyorPayloadDumpPort;
 import be.kdg.prog6.common.events.ConveyorPayloadDumpEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

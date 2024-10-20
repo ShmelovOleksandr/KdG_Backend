@@ -2,9 +2,9 @@ package be.kdg.prog6.boundedcontextLandside.core;
 
 import be.kdg.prog6.boundedcontextLandside.domain.*;
 import be.kdg.prog6.boundedcontextLandside.port.in.EnterWeightingBridgeUseCase;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindAppointmentPort;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
-import be.kdg.prog6.boundedcontextLandside.port.out.PersistWBTPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindWarehousePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.PersistWBTPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,12 @@ public class EnterWeightingBridgeUseCaseImpl implements EnterWeightingBridgeUseC
     }
 
     @Override
-    public WeightBridgeEntranceResponse handleWeightBridgeEntranceRequest(WeightBridgeEntranceCommand weightBridgeEntranceCommand) {
-        Appointment appointment = findAppointmentPort.findAppointmentById(weightBridgeEntranceCommand.appointmentId());
+    public WeightBridgeEntranceResponse handleWeightBridgeEntranceRequest(WeightBridgePassageCommand weightBridgePassageCommand) {
+        Appointment appointment = findAppointmentPort.findAppointmentById(weightBridgePassageCommand.appointmentId());
 
         Warehouse warehouse = findWarehousePort.findWarehouseBySellerIdAndMaterialTypeStored(appointment.getSellerId(), appointment.getMaterialType());
 
-        WBT weighBridgeTransaction = appointment.createWeighBridgeTransaction(weightBridgeEntranceCommand.weight());
+        WBT weighBridgeTransaction = appointment.createWeighBridgeTransaction(weightBridgePassageCommand.weight());
         persistWBTPort.save(weighBridgeTransaction);
 
         return new WeightBridgeEntranceResponse(warehouse.getWarehouseId());

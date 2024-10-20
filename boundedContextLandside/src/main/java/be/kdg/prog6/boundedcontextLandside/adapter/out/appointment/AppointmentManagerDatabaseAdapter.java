@@ -1,7 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
 import be.kdg.prog6.boundedcontextLandside.domain.AppointmentManager;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindAppointmentManagerPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentManagerPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

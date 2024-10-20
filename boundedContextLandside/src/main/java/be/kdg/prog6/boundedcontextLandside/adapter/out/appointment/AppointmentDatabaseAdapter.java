@@ -3,8 +3,8 @@ package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 import be.kdg.prog6.boundedcontextLandside.domain.Appointment;
 import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextLandside.adapter.out.appointment.exception.AppointmentNotFoundException;
-import be.kdg.prog6.boundedcontextLandside.port.out.AppointmentPersistencePort;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindAppointmentPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.AppointmentPersistencePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

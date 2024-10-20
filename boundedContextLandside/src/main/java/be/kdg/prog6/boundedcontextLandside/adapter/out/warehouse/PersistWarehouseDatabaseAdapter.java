@@ -4,26 +4,26 @@ import be.kdg.prog6.boundedcontextLandside.domain.MaterialType;
 import be.kdg.prog6.boundedcontextLandside.domain.SellerId;
 import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
-import be.kdg.prog6.boundedcontextLandside.port.out.WarehouseUpdatePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindWarehousePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.PersistWarehousePort;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WarehouseDatabaseAdapter implements FindWarehousePort, WarehouseUpdatePort  {
+public class PersistWarehouseDatabaseAdapter implements FindWarehousePort, PersistWarehousePort {
     private final WarehouseJpaRepository warehouseJpaRepository;
 
     @Autowired
-    public WarehouseDatabaseAdapter(WarehouseJpaRepository warehouseJpaRepository) {
+    public PersistWarehouseDatabaseAdapter(WarehouseJpaRepository warehouseJpaRepository) {
         this.warehouseJpaRepository = warehouseJpaRepository;
     }
 
 
     @Override
-    public void updateWarehouse(Warehouse warehouse) {
+    public Warehouse save(Warehouse warehouse) {
         WarehouseJpaEntity warehouseJpaEntity = WarehouseJpaEntity.of(warehouse);
-        warehouseJpaRepository.save(warehouseJpaEntity);
+        return warehouseJpaRepository.save(warehouseJpaEntity).toDomain();
     }
 
     @Override

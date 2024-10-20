@@ -6,9 +6,9 @@ import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.WarehouseCapacityLimitException;
 import be.kdg.prog6.boundedcontextLandside.port.in.ScheduleAppointmentCommand;
 import be.kdg.prog6.boundedcontextLandside.port.in.ScheduleAppointmentUseCase;
-import be.kdg.prog6.boundedcontextLandside.port.out.AppointmentPersistencePort;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindAppointmentManagerPort;
-import be.kdg.prog6.boundedcontextLandside.port.out.FindWarehousePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.AppointmentPersistencePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentManagerPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindWarehousePort;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

@@ -26,7 +26,7 @@ public class WarehouseDumpListener {
     }
 
     @RabbitListener(queues = MATERIAL_DUMPED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
-    public void warehouseUpdated(ConveyorPayloadDumpEvent event) {
+    public void payloadDumped(ConveyorPayloadDumpEvent event) {
         log.info("WarehouseEvent has been received {}", event);
         handleConveyorPayloadDumpPort.handleConveyorPayloadDump(
                 new AppointmentId(event.appointmentId()),

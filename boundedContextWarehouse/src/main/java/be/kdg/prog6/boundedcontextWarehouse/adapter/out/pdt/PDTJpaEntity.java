@@ -15,7 +15,7 @@ public class PDTJpaEntity {
     @Column(unique = true, nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private UUID appointmentId;
 
     @Column(nullable = false)
@@ -60,7 +60,8 @@ public class PDTJpaEntity {
                 new AppointmentId(this.appointmentId),
                 this.arrivalTime,
                 new WarehouseId(this.warehouse.getId()),
-                this.materialType
+                this.materialType,
+                this.deliveredWeigh
         );
     }
 
