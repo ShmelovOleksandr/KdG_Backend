@@ -6,7 +6,7 @@ import be.kdg.prog6.boundedcontextLandside.domain.Warehouse;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.WarehouseCapacityLimitException;
 import be.kdg.prog6.boundedcontextLandside.port.in.ScheduleAppointmentCommand;
 import be.kdg.prog6.boundedcontextLandside.port.in.ScheduleAppointmentUseCase;
-import be.kdg.prog6.boundedcontextLandside.port.out.persistance.AppointmentPersistencePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.PersistAppointmentPort;
 import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentManagerPort;
 import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindWarehousePort;
 import jakarta.transaction.Transactional;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ScheduleAppointmentUseCaseImpl implements ScheduleAppointmentUseCase {
-    private final AppointmentPersistencePort appointmentPersistencePort;
+    private final PersistAppointmentPort persistAppointmentPort;
     private final FindAppointmentManagerPort findAppointmentManagerPort;
     private final FindWarehousePort findWarehousePort;
 
-    public ScheduleAppointmentUseCaseImpl(AppointmentPersistencePort appointmentPersistencePort, FindAppointmentManagerPort findAppointmentManagerPort, FindWarehousePort findWarehousePort) {
-        this.appointmentPersistencePort = appointmentPersistencePort;
+    public ScheduleAppointmentUseCaseImpl(PersistAppointmentPort persistAppointmentPort, FindAppointmentManagerPort findAppointmentManagerPort, FindWarehousePort findWarehousePort) {
+        this.persistAppointmentPort = persistAppointmentPort;
         this.findAppointmentManagerPort = findAppointmentManagerPort;
         this.findWarehousePort = findWarehousePort;
     }
@@ -43,7 +43,7 @@ public class ScheduleAppointmentUseCaseImpl implements ScheduleAppointmentUseCas
                 scheduleAppointmentCommand.prefferedHour()
         );
 
-        appointmentPersistencePort.saveAppointment(savedAppointment);
+        persistAppointmentPort.save(savedAppointment);
 
         return savedAppointment;
     }

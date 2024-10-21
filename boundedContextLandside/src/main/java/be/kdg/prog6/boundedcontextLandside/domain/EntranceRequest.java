@@ -4,13 +4,15 @@ import java.time.LocalDateTime;
 
 public class EntranceRequest {
     private LicensePlate licensePlate;
+    private MaterialType materialType;
     private LocalDateTime requestTime;
     private boolean isApproved;
     private Appointment approvedAppointment;
 
 
-    public EntranceRequest(LicensePlate licensePlate) {
+    public EntranceRequest(LicensePlate licensePlate, MaterialType materialType) {
         this.licensePlate = licensePlate;
+        this.materialType = materialType;
         this.requestTime = LocalDateTime.now();
         this.isApproved = false;
         this.approvedAppointment = null;
@@ -22,6 +24,14 @@ public class EntranceRequest {
 
     public void setLicensePlate(LicensePlate licensePlate) {
         this.licensePlate = licensePlate;
+    }
+
+    public MaterialType getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(MaterialType materialType) {
+        this.materialType = materialType;
     }
 
     public LocalDateTime getRequestTime() {

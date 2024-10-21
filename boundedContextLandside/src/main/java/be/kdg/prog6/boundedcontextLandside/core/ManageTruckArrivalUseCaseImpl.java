@@ -3,7 +3,7 @@ package be.kdg.prog6.boundedcontextLandside.core;
 import be.kdg.prog6.boundedcontextLandside.domain.EntranceRequest;
 import be.kdg.prog6.boundedcontextLandside.domain.HourSlot;
 import be.kdg.prog6.boundedcontextLandside.port.in.ManageTruckArrivalUseCase;
-import be.kdg.prog6.boundedcontextLandside.port.out.persistance.AppointmentPersistencePort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.PersistAppointmentPort;
 import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindCurrentHourSlotPort;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ManageTruckArrivalUseCaseImpl implements ManageTruckArrivalUseCase {
     private final FindCurrentHourSlotPort findCurrentHourSlotPort;
-    private final AppointmentPersistencePort appointmentPersistencePort;
+    private final PersistAppointmentPort persistAppointmentPort;
 
     @Autowired
-    public ManageTruckArrivalUseCaseImpl(FindCurrentHourSlotPort findCurrentHourSlotPort, AppointmentPersistencePort appointmentPersistencePort) {
+    public ManageTruckArrivalUseCaseImpl(FindCurrentHourSlotPort findCurrentHourSlotPort, PersistAppointmentPort persistAppointmentPort) {
         this.findCurrentHourSlotPort = findCurrentHourSlotPort;
-        this.appointmentPersistencePort = appointmentPersistencePort;
+        this.persistAppointmentPort = persistAppointmentPort;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ManageTruckArrivalUseCaseImpl implements ManageTruckArrivalUseCase 
         EntranceRequest handeledEntranceRequest = currentHourSlot.checkEntranceRequest(entranceRequest);
 
         // update Appointment
-        appointmentPersistencePort.saveAppointment(handeledEntranceRequest.getApprovedAppointment());
+        persistAppointmentPort.save(handeledEntranceRequest.getApprovedAppointment());
 
         return handeledEntranceRequest;
     }

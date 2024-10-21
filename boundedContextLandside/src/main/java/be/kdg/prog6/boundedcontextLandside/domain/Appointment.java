@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
     private AppointmentId appointmentId;
+
     private SellerId sellerId;
     private LicensePlate licensePlate;
     private MaterialType materialType;
@@ -15,7 +16,6 @@ public class Appointment {
     private Hour arrivalHour;
     private LocalDateTime entranceTime;
     private LocalDateTime departureTime;
-
     public Appointment() {
     }
 
@@ -109,6 +109,11 @@ public class Appointment {
 
     public void setDepartureTime(LocalDateTime departureTime) {
         this.departureTime = departureTime;
+    }
+
+    @Override
+    public int compareTo(Appointment appointment) {
+        return this.getAppointmentId().id().compareTo(appointment.getAppointmentId().id());
     }
 
     @Override

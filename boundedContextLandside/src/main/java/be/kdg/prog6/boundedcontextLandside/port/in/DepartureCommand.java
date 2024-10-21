@@ -1,6 +1,6 @@
 package be.kdg.prog6.boundedcontextLandside.port.in;
 
-import be.kdg.prog6.boundedcontextLandside.domain.LicensePlate;
+import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 
-public record DepartureCommand(LicensePlate licensePlate) {
+public record DepartureCommand(AppointmentId appointmentId) {
 }

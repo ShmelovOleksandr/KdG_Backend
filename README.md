@@ -4,19 +4,12 @@
 
 Cant fetch warehouse activities
 
-Add isCompleted to appointments 
-
 Can create multiple PDT for the same Appointment (Possibly make appointment_id a PK)
 
-Send back to the landside the result of the creation of the PDT, successful or not (Solved with unique constrain?)
 
 ### Questions:
 
-Would it be better to pass appointment_id instead of license_plate when exiting the facility?
-
-Ask about EntranceRequest, is it a good solution?
-
-Do we need to send the copy of the PDT to the driver after he dumped the material 
+(Done?) Ask about EntranceRequest, is it a good solution?
 
 Do I need separated UUID in the PDT class if it is always 1-to-1 relationship?
 

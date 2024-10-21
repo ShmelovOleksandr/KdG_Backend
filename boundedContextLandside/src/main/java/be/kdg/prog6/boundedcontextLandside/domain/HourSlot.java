@@ -6,6 +6,9 @@ import be.kdg.prog6.boundedcontextLandside.domain.exception.NoFreeAppointmentsSl
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class HourSlot {
     //TODO Move to the .properties file
@@ -40,10 +43,22 @@ public class HourSlot {
 
     public EntranceRequest checkEntranceRequest(EntranceRequest entranceRequest) {
         LicensePlate licensePlate = entranceRequest.getLicensePlate();
+        MaterialType materialType = entranceRequest.getMaterialType();
+        Predicate<Appointment> appointmentPredicate = appointment -> {
+            boolean isLicensePlateSimilar = appointment.getLicensePlate().equals(licensePlate);
+            boolean isMaterialTypeSimilar = appointment.getMaterialType() == materialType;
+            boolean isNotFulfilled = appointment.getDepartureTime() == null;
+            return isLicensePlateSimilar && isMaterialTypeSimilar && isNotFulfilled;
+        };
 
-        Appointment correspondingAppointment = appointments.stream().filter(appointment -> appointment.getLicensePlate().equals(licensePlate)).findFirst().orElseThrow(
-                () -> new AppointmentForGivenLicensePlateNotFoundException("Appointment with license plate %s not found".formatted(licensePlate))
-        );
+        Appointment correspondingAppointment = appointments.stream()
+                .filter(appointmentPredicate)
+                .sorted()
+                .findFirst()
+                .orElseThrow(
+                        () -> new AppointmentForGivenLicensePlateNotFoundException("Appointment with license plate [%s] and material type [%s] not found".formatted(licensePlate, materialType))
+                );
+
         correspondingAppointment.setEntranceTime(LocalDateTime.now());
         entranceRequest.setApproved(true);
         entranceRequest.setApprovedAppointment(correspondingAppointment);
