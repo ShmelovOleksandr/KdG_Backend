@@ -3,7 +3,7 @@ package be.kdg.prog6.boundedcontextLandside.adapter.out.weighting_bridge;
 import be.kdg.prog6.boundedcontextLandside.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextLandside.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextLandside.port.out.messaging.AnnounceConveyorPayloadDumpPort;
-import be.kdg.prog6.common.events.ConveyorPayloadDumpEvent;
+import be.kdg.prog6.common.events.ConveyorPayloadDumpCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -29,7 +29,7 @@ public class ConveyorPayloadDumpPortEventPublisher implements AnnounceConveyorPa
     public void announceConveyorPayloadDump(AppointmentId appointmentId, WarehouseId destinaitonWarehouseId) {
         final String ROUTING_KEY = "warehouse.%s.material.dumped".formatted(destinaitonWarehouseId.id());
         LOGGER.info("Notifying RabbitMQ: {}", ROUTING_KEY);
-        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, new ConveyorPayloadDumpEvent(
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, new ConveyorPayloadDumpCommand(
                 UUID.randomUUID(),
                 LocalDateTime.now().toString(),
                 appointmentId.id(),

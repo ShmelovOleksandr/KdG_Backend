@@ -3,7 +3,7 @@ package be.kdg.prog6.boundedcontextWarehouse.adapter.in;
 import be.kdg.prog6.boundedcontextWarehouse.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextWarehouse.domain.WarehouseId;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.HandleConveyorPayloadDumpPort;
-import be.kdg.prog6.common.events.ConveyorPayloadDumpEvent;
+import be.kdg.prog6.common.events.ConveyorPayloadDumpCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -26,7 +26,7 @@ public class WarehouseDumpListener {
     }
 
     @RabbitListener(queues = MATERIAL_DUMPED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
-    public void payloadDumped(ConveyorPayloadDumpEvent event) {
+    public void payloadDumped(ConveyorPayloadDumpCommand event) {
         log.info("WarehouseEvent has been received {}", event);
         handleConveyorPayloadDumpPort.handleConveyorPayloadDump(
                 new AppointmentId(event.appointmentId()),

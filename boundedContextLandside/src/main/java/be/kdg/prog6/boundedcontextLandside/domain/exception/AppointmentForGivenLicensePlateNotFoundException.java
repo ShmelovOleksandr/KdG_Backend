@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment.exception;
+package be.kdg.prog6.boundedcontextLandside.domain.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 

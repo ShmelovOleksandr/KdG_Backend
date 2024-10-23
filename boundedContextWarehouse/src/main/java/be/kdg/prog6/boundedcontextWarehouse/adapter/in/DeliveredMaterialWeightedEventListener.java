@@ -3,7 +3,7 @@ package be.kdg.prog6.boundedcontextWarehouse.adapter.in;
 import be.kdg.prog6.boundedcontextWarehouse.domain.AppointmentId;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialWeightCommand;
 import be.kdg.prog6.boundedcontextWarehouse.port.in.ReceiveMaterialWeightUseCase;
-import be.kdg.prog6.common.events.DeliveredMaterialWeightedEvent;
+import be.kdg.prog6.common.events.DeliveredMaterialWeightedCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -23,7 +23,7 @@ public class DeliveredMaterialWeightedEventListener {
     }
 
     @RabbitListener(queues = MATERIAL_WEIGHTED_QUEUE, messageConverter = "#{jackson2JsonMessageConverter}")
-    public void handleWeightedMaterial(DeliveredMaterialWeightedEvent event) {
+    public void handleWeightedMaterial(DeliveredMaterialWeightedCommand event) {
         logger.info("WarehouseEvent has been received {}", event);
         receiveMaterialWeightUseCase.receiveMaterialWeight(new ReceiveMaterialWeightCommand(
                 new AppointmentId(event.appointmentId()),
