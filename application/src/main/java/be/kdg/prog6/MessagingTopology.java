@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.in.rabbitmq;
+package be.kdg.prog6;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQTopology {
+public class MessagingTopology {
     public static final String APPOINTMENT_EVENTS_EXCHANGE = "appointment_events";
     public static final String MATERIAL_WEIGHTED_QUEUE = "material_weighted";
 
