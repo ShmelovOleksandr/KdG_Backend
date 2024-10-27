@@ -27,6 +27,20 @@
       volumes:
         - ./postgres/data:/var/lib/postgres
 
+    postgres_waterside_db:
+      image: 'postgres:16.1-alpine'
+      restart: always
+      environment:
+        - 'POSTGRES_DB=kdg_waterside_db'
+        - 'POSTGRES_USER=kdg_admin'
+        - 'POSTGRES_PASSWORD=kdg_admin_password'
+      ports:
+        - '5442:5432'
+      networks:
+        - backend
+      volumes:
+        - ./postgres/data:/var/lib/postgres
+
 
     app_rabbitmq:
       image: rabbitmq:3.13.7-management-alpine

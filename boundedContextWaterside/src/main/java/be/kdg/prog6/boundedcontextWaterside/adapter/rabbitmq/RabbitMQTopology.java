@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextLandside.adapter.in.rabbitmq;
+package be.kdg.prog6.boundedcontextWaterside.adapter.rabbitmq;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -12,11 +12,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQTopology {
-    public static final String APPOINTMENT_EVENTS_EXCHANGE = "appointment_events";
-    public static final String MATERIAL_WEIGHTED_QUEUE = "material_weighted";
-
     public static final String WAREHOUSE_EVENTS_EXCHANGE = "warehouse_events";
-    public static final String MATERIAL_DUMPED_QUEUE = "material_dumped";
+    public static final String MATERIAL_UNLOADED_QUEUE = "material_unloaded";
 
     @Bean
     TopicExchange warehouseEventsExchange() {
@@ -24,34 +21,16 @@ public class RabbitMQTopology {
     }
 
     @Bean
-    Queue materialDumpedQueue() {
-        return new Queue(MATERIAL_DUMPED_QUEUE, true);
+    Queue materialUnloadedQueue() {
+        return new Queue(MATERIAL_UNLOADED_QUEUE, true);
     }
 
     @Bean
-    Binding warehosueDumpBinding(TopicExchange warehouseEventsExchange, Queue materialDumpedQueue) {
+    Binding warehosueDumpBinding(TopicExchange warehouseEventsExchange, Queue materialUnloadedQueue) {
         return BindingBuilder
-                .bind(materialDumpedQueue)
+                .bind(materialUnloadedQueue)
                 .to(warehouseEventsExchange)
-                .with("warehouse.#.material.dumped");
-    }
-
-    @Bean
-    TopicExchange appointmentEventsExchange() {
-        return new TopicExchange(APPOINTMENT_EVENTS_EXCHANGE);
-    }
-
-    @Bean
-    Queue materialWeightedQueue() {
-        return new Queue(MATERIAL_WEIGHTED_QUEUE, true);
-    }
-
-    @Bean
-    Binding weightingBridgeBinding(TopicExchange appointmentEventsExchange, Queue materialWeightedQueue) {
-        return BindingBuilder
-                .bind(materialWeightedQueue)
-                .to(appointmentEventsExchange)
-                .with("appointment.#.material.weighted");
+                .with("warehouse.#.material.unloaded");
     }
 
     @Bean

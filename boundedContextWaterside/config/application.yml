@@ -1,9 +1,29 @@
 server:
-  port: ${PORT:8091}
+  port: ${PORT:8093}
   servlet:
-    context-path: /bca
+    context-path: /waterside
 
 
 spring:
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+  datasource:
+    url: "jdbc:postgresql://localhost:5442/kdg_waterside_db"
+    username: kdg_admin
+    password: kdg_admin_password
+    driver-class-name: org.postgresql.Driver
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: myuser
+    password: mypassword
   config:
     additional-location: ${SPRING_CONFIG_ADDITIONAL_LOCATION}
