@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitMQTopology1 {
+public class RabbitMQTopology {
     public static final String APPOINTMENT_EVENTS_EXCHANGE = "appointment_events";
     public static final String MATERIAL_WEIGHTED_QUEUE = "material_weighted";
 
