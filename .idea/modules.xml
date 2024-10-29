@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/boundedContextLandside/kdg-backend.boundedContextLandside.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boundedContextLandside/kdg-backend.boundedContextLandside.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/boundedContextLandside/kdg-backend.boundedContextLandside.test.iml" filepath="$PROJECT_DIR$/.idea/modules/boundedContextLandside/kdg-backend.boundedContextLandside.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/boundedContextWarehouse/kdg-backend.boundedContextWarehouse.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boundedContextWarehouse/kdg-backend.boundedContextWarehouse.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/boundedContextWaterside/kdg-backend.boundedContextWaterside.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boundedContextWaterside/kdg-backend.boundedContextWaterside.main.iml" />
     </modules>
   </component>
 </project>

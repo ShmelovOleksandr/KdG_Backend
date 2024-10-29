@@ -1,5 +1,7 @@
 package be.kdg.prog6.boundedcontextWaterside.domain;
 
+import be.kdg.prog6.boundedcontextWaterside.domain.exception.SONotInspectedException;
+
 import java.time.LocalDate;
 
 public class SO {
@@ -42,6 +44,11 @@ public class SO {
         setActualArrivalDate(now);
         setDateOfInspectionOperationSignature(now.plusDays(1));
         setDateOfBunkeringOperationSignature(now.plusDays(1));
+    }
+
+    public void validateAllInspections() {
+        if (this.dateOfInspectionOperationSignature == null || this.dateOfBunkeringOperationSignature == null)
+            throw new SONotInspectedException("SO [%s] is not completely inspected yet.".formatted(this.id.id()));
     }
 
     public SOId getId() {

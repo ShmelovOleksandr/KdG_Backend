@@ -34,11 +34,11 @@ public class ArchitectureTest {
         JavaClasses jc = new ClassFileImporter().importPackages("be.kdg.prog6.boundedcontextLandside");
 
         final Architectures.LayeredArchitecture arch = layeredArchitecture().consideringOnlyDependenciesInLayers()
-                .layer("DRIVING_ADAPTERS").definedBy("..adapter.in..")
-                .layer("DRIVING_PORTS").definedBy("..port.in..")
+                .layer("ADAPTER_IN").definedBy("..adapter.in..")
+                .layer("PORT_IN").definedBy("..port.in..")
                 .layer("CORE").definedBy("..core..")
-                .whereLayer("DRIVING_ADAPTERS").mayNotBeAccessedByAnyLayer()
-                .whereLayer("DRIVING_PORTS").mayOnlyBeAccessedByLayers("DRIVING_ADAPTERS", "CORE");
+                .whereLayer("ADAPTER_IN").mayNotBeAccessedByAnyLayer()
+                .whereLayer("PORT_IN").mayOnlyBeAccessedByLayers("DRIVING_ADAPTERS", "CORE");
 
         arch.check(jc);
     }

@@ -33,6 +33,10 @@ public class Warehouse {
         return warehouseActivityWindow.addWarehouseActivity(WarehouseActivityType.INCREASE, tons);
     }
 
+    public WarehouseActivity removeMaterialTons(BigDecimal tons) {
+        return warehouseActivityWindow.addWarehouseActivity(WarehouseActivityType.DECREASE, tons);
+    }
+
     public WarehouseId getId() {
         return id;
     }
