@@ -1,9 +1,7 @@
 package be.kdg.prog6.boundedcontextLandside.adapter.out.appointment;
 
-import be.kdg.prog6.boundedcontextLandside.domain.Hour;
 import be.kdg.prog6.boundedcontextLandside.domain.HourSlot;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +66,7 @@ public class HourSlotJpaEntity {
 
     public HourSlot toDomain() {
         return new HourSlot(
+                this.appointmentManager.getManagedDate(),
                 this.hour,
                 this.appointments.stream().map(AppointmentJpaEntity::toDomain).collect(Collectors.toList())
         );

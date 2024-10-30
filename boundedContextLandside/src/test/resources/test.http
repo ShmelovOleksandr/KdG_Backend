@@ -29,7 +29,7 @@ Authorization: Bearer {{access_token}}
     "truckLicensePlate":"ABC123",
     "deliveredMaterialType":"PETCOKE",
     "date":"2024-10-30",
-    "preferredHour":10
+    "preferredHour":21
 }
 
 ###
@@ -45,6 +45,10 @@ Authorization: Bearer {{access_token}}
 > {%
     client.global.set("appointmentId", response.body.appointmentId);
 %}
+
+###
+GET http://localhost:8091/api/v1/appointmentManagers/2024-10-30/hourSlots/21
+Authorization: Bearer {{access_token}}
 
 ###
 POST http://localhost:8091/api/v1/requests/weightingbridge_passages/entrances

@@ -3,6 +3,7 @@ package be.kdg.prog6.boundedcontextLandside.domain;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.AppointmentForGivenLicensePlateNotFoundException;
 import be.kdg.prog6.boundedcontextLandside.domain.exception.NoFreeAppointmentsSlots;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 public class HourSlot {
     //TODO Move to the .properties file
     private final static int MAX_APPOINTMENTS_PER_HOUR = 40;
+    private LocalDate date;
     private int hour;
     private List<Appointment> appointments = new ArrayList<>();
 
@@ -21,7 +23,8 @@ public class HourSlot {
         this.hour = hour;
     }
 
-    public HourSlot(int hour, List<Appointment> appointments) {
+    public HourSlot(LocalDate date, int hour, List<Appointment> appointments) {
+        this.date = date;
         this.hour = hour;
         this.appointments = appointments;
     }
@@ -62,6 +65,14 @@ public class HourSlot {
         entranceRequest.setApprovedAppointment(correspondingAppointment);
 
         return entranceRequest;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public int getHour() {

@@ -1,14 +1,15 @@
 package be.kdg.prog6.boundedcontextLandside;
 
 import be.kdg.prog6.boundedcontextLandside.domain.*;
-import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindCurrentHourSlotPort;
+import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindHourSlotPort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class FindCurrentHourSlotPortStub implements FindCurrentHourSlotPort {
+public class FindHourSlotPortStub implements FindHourSlotPort {
+    public static final LocalDate HOUR_SLOT_DATE = LocalDate.of(2100, 1, 1);
     public static final int HOUR_SLOT_HOUR = 12;
     public static final AppointmentId APPOINTMENT_ID = new AppointmentId(UUID.randomUUID());
     public static final SellerId SELLER_ID = new SellerId(UUID.randomUUID());
@@ -19,7 +20,7 @@ public class FindCurrentHourSlotPortStub implements FindCurrentHourSlotPort {
 
     @Override
     public HourSlot findCurrentHourSlot() {
-        return new HourSlot(HOUR_SLOT_HOUR, new ArrayList<>(List.of(
+        return new HourSlot(HOUR_SLOT_DATE, HOUR_SLOT_HOUR, new ArrayList<>(List.of(
                 new Appointment(
                         APPOINTMENT_ID,
                         SELLER_ID,
@@ -29,5 +30,10 @@ public class FindCurrentHourSlotPortStub implements FindCurrentHourSlotPort {
                         ARRIVAL_HOUR
                 )
         )));
+    }
+
+    @Override
+    public HourSlot findHourSlotByDateAndHour(LocalDate date, Hour hour) {
+        return null;
     }
 }
