@@ -1,8 +1,5 @@
 server:
   port: ${PORT:8092}
-  servlet:
-    context-path: /warehouse
-
 
 spring:
   jpa:

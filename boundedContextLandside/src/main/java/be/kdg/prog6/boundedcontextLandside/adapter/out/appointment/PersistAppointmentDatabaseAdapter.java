@@ -8,6 +8,8 @@ import be.kdg.prog6.boundedcontextLandside.port.out.persistance.FindAppointmentP
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class PersistAppointmentDatabaseAdapter implements PersistAppointmentPort, FindAppointmentPort {
     private final AppointmentJpaRepository appointmentJpaRepository;
@@ -29,5 +31,10 @@ public class PersistAppointmentDatabaseAdapter implements PersistAppointmentPort
         return appointmentJpaRepository.findById(appointmentId.id()).orElseThrow(
                 () -> new AppointmentNotFoundException("Appointment with given id [%s] was not found.".formatted(appointmentId.id()))
         ).toDomain();
+    }
+
+    @Override
+    public List<Appointment> findAppointmentsWithArrivalDateNotNullAndDepartureDateNull() {
+        return appointmentJpaRepository.findAllByEntranceTimeIsNotNullAndDepartureTimeIsNull().stream().map(AppointmentJpaEntity::toDomain).toList();
     }
 }

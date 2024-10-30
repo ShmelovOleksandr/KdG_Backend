@@ -15,7 +15,12 @@ scope = openid
 %}
 
 ###
-POST http://localhost:8091/landside/api/v1/appointments
+GET http://localhost:8091/api/v1/facilities/1
+Authorization: Bearer {{access_token}}
+
+
+###
+POST http://localhost:8091/api/v1/appointments
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
@@ -23,12 +28,12 @@ Authorization: Bearer {{access_token}}
     "sellerId":"ddf45d07-948e-4cdc-b93e-4a02e9337415",
     "truckLicensePlate":"ABC123",
     "deliveredMaterialType":"PETCOKE",
-    "date":"2024-10-23",
-    "preferredHour":17
+    "date":"2024-10-30",
+    "preferredHour":10
 }
 
 ###
-POST http://localhost:8091/landside/api/v1/requests/entrances
+POST http://localhost:8091/api/v1/requests/entrances
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
@@ -42,11 +47,11 @@ Authorization: Bearer {{access_token}}
 %}
 
 ###
-POST http://localhost:8091/landside/api/v1/requests/weightingbridge_passages/entrances
+POST http://localhost:8091/api/v1/requests/weightingbridge_passages/entrances
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 {
-  "appointmentId":{{appointmentId}},
+  "appointmentId":"0e04c872-7689-4237-8294-434a38dc161f",
   "weight":25
 }

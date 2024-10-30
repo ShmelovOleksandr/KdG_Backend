@@ -1,8 +1,5 @@
 server:
   port: ${PORT:8091}
-  servlet:
-    context-path: /landside
-
 
 spring:
   sql:
