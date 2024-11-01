@@ -1,4 +1,4 @@
-package be.kdg.prog6.boundedcontextWaterside.adapter.in.dto;
+package be.kdg.prog6.boundedcontextWaterside.adapter.in.so.dto;
 
 import be.kdg.prog6.boundedcontextWaterside.domain.POId;
 import be.kdg.prog6.boundedcontextWaterside.domain.SO;

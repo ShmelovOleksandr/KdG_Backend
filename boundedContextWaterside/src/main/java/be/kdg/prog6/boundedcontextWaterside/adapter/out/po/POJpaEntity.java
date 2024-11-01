@@ -2,6 +2,7 @@ package be.kdg.prog6.boundedcontextWaterside.adapter.out.po;
 
 import be.kdg.prog6.boundedcontextWaterside.adapter.out.customer.CustomerJpaEntity;
 import be.kdg.prog6.boundedcontextWaterside.adapter.out.seller.SellerJpaEntity;
+import be.kdg.prog6.boundedcontextWaterside.adapter.out.so.SOJpaEntity;
 import be.kdg.prog6.boundedcontextWaterside.domain.*;
 import jakarta.persistence.*;
 
@@ -15,6 +16,10 @@ public class POJpaEntity {
     @Id
     @Column(updatable = false, nullable = false, unique = true)
     private UUID poId;
+
+    @OneToOne
+    @JoinColumn(name = "soId", referencedColumnName = "soId")
+    private SOJpaEntity so;
 
     @Column(nullable = false)
     private String poNumber;
@@ -62,7 +67,8 @@ public class POJpaEntity {
                 this.customer.toDomain(),
                 this.seller.toDomain(),
                 this.vesselNumber,
-                this.orderLines.stream().map(OrderItemJpaEntity::toDomain).toList()
+                this.orderLines.stream().map(OrderItemJpaEntity::toDomain).toList(),
+                this.so != null ? this.so.toDomain() : null
         );
     }
 
@@ -80,6 +86,14 @@ public class POJpaEntity {
 
     public void setPoNumber(String poNumber) {
         this.poNumber = poNumber;
+    }
+
+    public SOJpaEntity getSo() {
+        return so;
+    }
+
+    public void setSo(SOJpaEntity so) {
+        this.so = so;
     }
 
     public LocalDate getDate() {

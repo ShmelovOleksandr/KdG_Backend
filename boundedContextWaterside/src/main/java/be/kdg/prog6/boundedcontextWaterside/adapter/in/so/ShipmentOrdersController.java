@@ -1,7 +1,7 @@
-package be.kdg.prog6.boundedcontextWaterside.adapter.in;
+package be.kdg.prog6.boundedcontextWaterside.adapter.in.so;
 
-import be.kdg.prog6.boundedcontextWaterside.adapter.in.dto.SOGetDto;
-import be.kdg.prog6.boundedcontextWaterside.adapter.in.dto.SOPostDto;
+import be.kdg.prog6.boundedcontextWaterside.adapter.in.so.dto.SOGetDto;
+import be.kdg.prog6.boundedcontextWaterside.adapter.in.so.dto.SOPostDto;
 import be.kdg.prog6.boundedcontextWaterside.domain.SO;
 import be.kdg.prog6.boundedcontextWaterside.domain.SOId;
 import be.kdg.prog6.boundedcontextWaterside.port.in.ShipArrivedUseCase;

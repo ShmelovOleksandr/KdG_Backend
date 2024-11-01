@@ -11,11 +11,12 @@ public class PO {
     private Seller seller;
     private String vesselNumber;
     private List<OrderItem> orderLines;
+    private SO respectiveSO;
 
     public PO() {
     }
 
-    public PO(String poNumber, POId poId, LocalDate date, Customer customer, Seller seller, String vesselNumber, List<OrderItem> orderLines) {
+    public PO(String poNumber, POId poId, LocalDate date, Customer customer, Seller seller, String vesselNumber, List<OrderItem> orderLines, SO respectiveSO) {
         this.poNumber = poNumber;
         this.poId = poId;
         this.date = date;
@@ -79,5 +80,13 @@ public class PO {
 
     public void setOrderLines(List<OrderItem> orderLines) {
         this.orderLines = orderLines;
+    }
+
+    public SO getRespectiveSO() {
+        return respectiveSO;
+    }
+
+    public void setRespectiveSO(SO respectiveSO) {
+        this.respectiveSO = respectiveSO;
     }
 }
