@@ -31,6 +31,14 @@ public class SellerJpaEntity {
         this.address = address;
     }
 
+    public static SellerJpaEntity of(Seller seller) {
+        return new SellerJpaEntity(
+                seller.sellerId().id(),
+                seller.name(),
+                seller.address()
+        );
+    }
+
     public Seller toDomain() {
         return new Seller(
                 new SellerId(this.sellerId),

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionHandlerManager {
     @ExceptionHandler(value = { AppointmentForGivenLicensePlateNotFoundException.class })
     public ErrorResponse handleArtistNotFoundException(AppointmentForGivenLicensePlateNotFoundException ex, WebRequest request) {

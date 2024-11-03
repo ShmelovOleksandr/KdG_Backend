@@ -31,6 +31,14 @@ public class CustomerJpaEntity {
         this.address = address;
     }
 
+    public static CustomerJpaEntity of(Customer customer) {
+        return new CustomerJpaEntity(
+                customer.customerId().id(),
+                customer.name(),
+                customer.address()
+        );
+    }
+
     public UUID getCustomerId() {
         return customerId;
     }

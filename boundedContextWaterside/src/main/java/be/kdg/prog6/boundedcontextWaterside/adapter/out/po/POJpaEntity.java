@@ -49,14 +49,41 @@ public class POJpaEntity {
         this.poId = poId;
     }
 
-    public POJpaEntity(UUID poId, String poNumber, LocalDate date, String vesselNumber, CustomerJpaEntity customer, SellerJpaEntity seller, List<OrderItemJpaEntity> orderLines) {
+    public POJpaEntity(UUID poId, String poNumber, LocalDate date, String vesselNumber, CustomerJpaEntity customer, SellerJpaEntity seller) {
         this.poId = poId;
         this.poNumber = poNumber;
         this.date = date;
         this.vesselNumber = vesselNumber;
         this.customer = customer;
         this.seller = seller;
+    }
+
+    public POJpaEntity(UUID poId, SOJpaEntity so, String poNumber, LocalDate date, String vesselNumber, CustomerJpaEntity customer, SellerJpaEntity seller, List<OrderItemJpaEntity> orderLines) {
+        this.poId = poId;
+        this.so = so;
+        this.poNumber = poNumber;
+        this.date = date;
+        this.vesselNumber = vesselNumber;
+        this.customer = customer;
+        this.seller = seller;
         this.orderLines = orderLines;
+    }
+
+    public static POJpaEntity of(PO po) {
+        POJpaEntity poJpaEntity = new POJpaEntity(
+                po.getPoId().id(),
+                po.getPoNumber(),
+                po.getDate(),
+                po.getVesselNumber(),
+                CustomerJpaEntity.of(po.getCustomer()),
+                SellerJpaEntity.of(po.getSeller())
+        );
+        List<OrderItemJpaEntity> orderItemJpaEntities = po.getOrderLines().stream().map(OrderItemJpaEntity::of).toList();
+        orderItemJpaEntities.forEach(orderItemJpaEntity -> orderItemJpaEntity.setPo(poJpaEntity));
+        poJpaEntity.setOrderLines(orderItemJpaEntities);
+        poJpaEntity.setSo(SOJpaEntity.of(po.getRespectiveSO()));
+
+        return poJpaEntity;
     }
 
     public PO toDomain() {

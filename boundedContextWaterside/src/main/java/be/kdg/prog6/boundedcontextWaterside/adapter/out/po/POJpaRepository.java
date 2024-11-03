@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface POJpaRepository extends JpaRepository<POJpaEntity, UUID> {
 
-    @Query("select po from POJpaEntity po join fetch po.so where po.so != null ")
+    @Query("select po from POJpaEntity po join fetch po.customer join fetch po.seller join fetch po.so join fetch po.orderLines where po.so != null ")
     List<POJpaEntity> findAllBySoNotNull();
 
     @Query(value = "select * from pos where so_id is null ", nativeQuery = true)

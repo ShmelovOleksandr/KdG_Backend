@@ -1,8 +1,0 @@
-### GET request to example server
-GET localhost:8093/api/v1/pos?outstanding=true
-
-###
-GET localhost:8093/api/v1/pos
-    ?fulfilled=true
-
-###

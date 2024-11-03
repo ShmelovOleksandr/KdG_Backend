@@ -122,4 +122,9 @@ public class SO {
     public void setDateOfBunkeringOperationSignature(LocalDate dateOfBunkeringOperationSignature) {
         this.dateOfBunkeringOperationSignature = dateOfBunkeringOperationSignature;
     }
+
+    public void handleShipDeparture() {
+        this.validateAllInspections();
+        this.setActualDepartureDate(LocalDate.now());
+    }
 }

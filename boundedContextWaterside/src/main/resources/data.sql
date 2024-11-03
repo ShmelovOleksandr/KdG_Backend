@@ -13,4 +13,7 @@ values (1, 100, '00145d07-948e-4cdc-b93e-4a02e9337415', '12345d07-948e-4cdc-b93e
 
 insert into warehouses (id, owner_id, material_type)
 values ('1df45d07-948e-4cdc-b93e-4a02e9337415', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'PETCOKE'),
-       ('25b63a57-c1d7-4a8d-a3e7-62feebbc9d3f', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'SLAG');
+       ('25b63a57-c1d7-4a8d-a3e7-62feebbc9d3f', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'SLAG'),
+       ('9568a19f-d4c0-4d11-8ff8-3c03982e751a', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'CEMENT'),
+       ('a019abe2-e0ef-4985-977a-aa90ec019485', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'IRON_ORE'),
+       ('1361ed73-618e-4b3a-bca8-816155a15787', 'ddf45d07-948e-4cdc-b93e-4a02e9337415', 'GYPSUM');

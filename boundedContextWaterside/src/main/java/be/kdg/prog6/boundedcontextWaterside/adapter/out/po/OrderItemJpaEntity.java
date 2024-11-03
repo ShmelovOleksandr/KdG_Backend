@@ -38,6 +38,14 @@ public class OrderItemJpaEntity {
     public OrderItemJpaEntity() {
     }
 
+    public OrderItemJpaEntity(int lineNumber, MaterialType materialType, String description, int quantity, UOM uom) {
+        this.lineNumber = lineNumber;
+        this.materialType = materialType;
+        this.description = description;
+        this.quantity = quantity;
+        this.uom = uom;
+    }
+
     public OrderItemJpaEntity(UUID orderItemId, int lineNumber, MaterialType materialType, String description, int quantity, UOM uom, POJpaEntity po) {
         this.orderItemId = orderItemId;
         this.lineNumber = lineNumber;
@@ -111,6 +119,16 @@ public class OrderItemJpaEntity {
                 this.description,
                 this.quantity,
                 this.uom
+        );
+    }
+
+    public static OrderItemJpaEntity of(OrderItem orderItem) {
+        return new OrderItemJpaEntity(
+                orderItem.lineNumber(),
+                orderItem.materialType(),
+                orderItem.description(),
+                orderItem.quantity(),
+                orderItem.uom()
         );
     }
 }

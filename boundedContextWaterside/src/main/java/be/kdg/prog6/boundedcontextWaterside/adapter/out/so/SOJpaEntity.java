@@ -51,7 +51,7 @@ public class SOJpaEntity {
 
     public static SOJpaEntity of(SO so) {
         return new SOJpaEntity(
-                UUID.randomUUID(),
+                so.getId().id(),
                 new POJpaEntity(so.getPurchaseOrderId().id()),
                 so.getVesselNumber(),
                 so.getEstimatedArrivalDate(),

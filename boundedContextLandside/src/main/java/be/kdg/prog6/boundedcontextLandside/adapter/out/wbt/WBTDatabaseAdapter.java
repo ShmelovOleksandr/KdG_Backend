@@ -25,7 +25,7 @@ public class WBTDatabaseAdapter implements PersistWBTPort, FindWBTPort {
     @Override
     public WBT findWBTByAppointmentId(AppointmentId appointmentId) {
         return wbtJpaRepository.findByAppointment_Id(appointmentId.id()).orElseThrow(
-                () -> new WBTNotFoundException("WBT with given id [%s] not found.".formatted(appointmentId.id()))
+                () -> new WBTNotFoundException("WBT with given appointmentId [%s] not found.".formatted(appointmentId.id()))
         ).toDomain();
     }
 }

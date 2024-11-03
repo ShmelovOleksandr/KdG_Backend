@@ -1,0 +1,19 @@
+### Get all outstading POs
+GET localhost:8093/api/v1/pos?outstanding=true
+
+### Get all fulfilled POs
+GET localhost:8093/api/v1/pos?fulfilled=true
+
+### Post SO (Ship arrived)
+POST http://localhost:8093/api/v1/SOs
+Content-Type: application/json
+
+{
+    "purchaseOrderId":"12345d07-948e-4cdc-b93e-4a02e9337415",
+    "vesselNumber":"VSL7891011",
+    "estimatedArrivalDate":"2024-10-27",
+    "estimatedDepartureDate":"2024-10-30"
+}
+
+### Post ship departure
+POST http://localhost:8093/api/v1/SOs/acd07984-ed6e-4f39-8a8d-09b78b1d3a7a/departure
